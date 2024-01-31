@@ -1,0 +1,21 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        color_primary: "#1565D8",
+        color_primary_text: "#1565D8",
+        color_secondary_text: "#C1BBEB",
+        color_dark_text: "#262626",
+        color_light: "#dbeafe",
+        color_red: "#FF3131",
+        color_orange: "#FB7D5B",
+        color_yellow: "#FCC43E",
+        color_green: "#00E709",
+        color_white: '#eff6ff'
+      },
+    },
+  },
+  plugins: [],
+};
