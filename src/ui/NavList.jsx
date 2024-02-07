@@ -4,7 +4,7 @@ import * as hi2Icons from "react-icons/hi2";
 function NavList({ sideBar, showSideBar }) {
   return (
     <nav>
-      <ul className="flex flex-col space-y-1 ">
+      <ul className={`flex flex-col space-y-1 ${sideBar?'':'hidden sm:block'}`}>
         {navigateList.map((data) => (
           <NavLink
             to={data.path}

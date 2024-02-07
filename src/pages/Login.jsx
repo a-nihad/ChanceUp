@@ -1,7 +1,7 @@
 function Login() {
     return (
         <div>
-            Login
+            Login Kuri-Wallet
         </div>
     )
 }

@@ -2,14 +2,6 @@ import { HiArrowRightOnRectangle, HiMiniMoon } from "react-icons/hi2";
 import { FaUser } from "react-icons/fa";
 
 function Header() {
-  // display: block;
-  // width: 4rem;
-  // width: 3.6rem;
-  // aspect-ratio: 1;
-  // object-fit: cover;
-  // object-position: center;
-  // border-radius: 50%;
-  // outline: 2px solid var(--color-grey-100);
   return (
     <div className="bg-color_light flex justify-end px-10 py-3">
       <div className="text-color_primary_text flex items-center gap-8">

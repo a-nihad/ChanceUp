@@ -11,11 +11,11 @@ function Sidebar() {
   return (
     <>
       <button
-        className="bg-color_primary text-color_white absolute left-3 top-3 rounded-xl p-3 text-3xl sm:left-6 sm:p-0 lg:hidden "
+        className="absolute left-3 top-3 rounded-xl bg-color_primary p-3 text-3xl text-color_white sm:left-6 sm:p-0 lg:hidden "
         onClick={showSideBar}
       >
         {sideBar ? (
-          <span className="border-color_secondary_text bg-color_primary absolute left-56 rounded-full border p-2 text-2xl sm:left-52 ">
+          <span className="absolute left-56 rounded-full border border-color_secondary_text bg-color_primary p-2 text-2xl sm:left-52 ">
             <HiChevronLeft />
           </span>
         ) : (
@@ -24,8 +24,8 @@ function Sidebar() {
       </button>
 
       <div
-        className={`bg-color_primary text-color_white row-span-full h-screen w-64 space-y-5 py-10 duration-500 ${
-          sideBar ? "pl-8" : "w-2 sm:block sm:w-20 lg:w-64 lg:pl-8"
+        className={`row-span-full h-screen space-y-5 bg-color_primary py-10 text-color_white duration-500 ${
+          sideBar ? "pl-8 w-64 " : "w-2 bg-color_white sm:bg-color_primary sm:block sm:w-20 lg:w-64 lg:pl-8"
         }`}
         ref={ref}
       >
