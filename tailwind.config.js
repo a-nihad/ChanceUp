@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         color_primary: "#1565D8",
+        color_primary_dark: "#1e40af",
         color_primary_text: "#1565D8",
         color_secondary_text: "#C1BBEB",
         color_dark_text: "#262626",
