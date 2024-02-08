@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createEditUser } from "../../services/apiUsers";
 
-export function useCreateUser(reset) {
+export function useCreateUser() {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
@@ -11,7 +11,6 @@ export function useCreateUser(reset) {
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
-      reset();
     },
 
     onError: (err) => {

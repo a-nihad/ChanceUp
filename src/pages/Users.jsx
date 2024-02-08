@@ -1,6 +1,5 @@
-import { FaUserPlus } from "react-icons/fa6";
+import AddUser from "../features/users/AddUser";
 import UsersTable from "../features/users/UsersTable";
-import ButtonIcon from "../ui/form/ButtonIcon";
 
 function Users() {
   return (
@@ -11,9 +10,7 @@ function Users() {
         </h1>
         <div className="flex items-center gap-2">
           Text
-          <ButtonIcon>
-            <FaUserPlus size={22} />
-          </ButtonIcon>
+          <AddUser />
         </div>
       </div>
 

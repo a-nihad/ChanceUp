@@ -5,20 +5,24 @@ import Input from "../../ui/form/Input";
 import { DevTool } from "@hookform/devtools";
 import { useCreateUser } from "./useCreateUser";
 
-function CreateUserForm() {
+function CreateUserForm({ onClose }) {
   const {
     control,
     register,
     handleSubmit,
     getValues,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
 
-  const { mutate } = useCreateUser(reset);
+  const { mutate } = useCreateUser();
 
   function onSubmit(data) {
-    mutate(data);
+    mutate(data, {
+      onSuccess: () => {
+        reset(), onClose();
+      },
+    });
   }
 
   return (
@@ -61,7 +65,7 @@ function CreateUserForm() {
 
         <FormRow>
           <div className="col-start-3 space-x-3">
-            <Buttion variation="secondary" type="reset">
+            <Buttion onClick={onClose} variation="secondary" type="reset">
               Cancel
             </Buttion>
             <Buttion> Create New </Buttion>

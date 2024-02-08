@@ -25,8 +25,6 @@ function UsersTable() {
           <UsersRow key={user.id} user={user} index={index} />
         ))}
       </div>
-
-      <CreateUserForm />
     </>
   );
 }
