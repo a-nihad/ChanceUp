@@ -2,7 +2,6 @@ import { useUsers } from "./useUsers";
 import Loader from "../../ui/Loader";
 import UsersRow from "./UsersRow";
 import Buttion from "../../ui/Buttion";
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import CreateUserForm from "./CreateUserForm";
 
 function UsersTable() {
@@ -26,6 +25,7 @@ function UsersTable() {
           <UsersRow key={user.id} user={user} index={index} />
         ))}
       </div>
+
       <CreateUserForm />
     </>
   );

@@ -1,10 +1,10 @@
 function UsersRow({ user, index }) {
-  const { fullName, phone, lot, amount, count, status } = user;
+  const { name, phone, lot, amount, count, status } = user;
 
   return (
     <div className="grid grid-cols-[0.6fr_1.8fr_1.3fr_1fr_1fr_1fr_1fr] items-center px-6 py-3 text-sm text-color_primary">
       <div> {index + 1} </div>
-      <div className="font-semibold"> {fullName} </div>
+      <div className="font-semibold"> {name} </div>
       <div> {phone} </div>
       <div> {lot} </div>
       <div> {amount} </div>

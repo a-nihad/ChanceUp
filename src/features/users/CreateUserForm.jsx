@@ -3,6 +3,7 @@ import Buttion from "../../ui/Buttion";
 import FormRow from "../../ui/form/FormRow";
 import Input from "../../ui/form/Input";
 import { DevTool } from "@hookform/devtools";
+import { useCreateUser } from "./useCreateUser";
 
 function CreateUserForm() {
   const {
@@ -11,9 +12,14 @@ function CreateUserForm() {
     handleSubmit,
     getValues,
     formState: { errors },
+    reset
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const { mutate } = useCreateUser(reset);
+
+  function onSubmit(data) {
+    mutate(data);
+  }
 
   return (
     <>
@@ -29,8 +35,8 @@ function CreateUserForm() {
           <Input type="text" id="phone" register={register} />
         </FormRow>
 
-        <FormRow label="Email" error={errors?.mail?.message}>
-          <Input type="email" id="mail" register={register} />
+        <FormRow label="Email" error={errors?.email?.message}>
+          <Input type="email" id="email" register={register} />
         </FormRow>
 
         <FormRow label="Place" error={errors?.place?.message}>
