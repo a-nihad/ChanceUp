@@ -4,18 +4,17 @@ import { toast } from "react-hot-toast";
 
 export function useDeleteUser() {
   const queryClient = useQueryClient();
-  const { mutate: deleteUser, isLoading: isDeleting } = useMutation({
+  const { mutate: deleteUser } = useMutation({
     mutationFn: deleteUserApi,
     onSuccess: () => {
       toast.success("User successfully deleted");
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
-      
     },
     onError: (err) => {
       toast.error(err.message);
     },
   });
-  return { deleteUser, isDeleting };
+  return { deleteUser };
 }

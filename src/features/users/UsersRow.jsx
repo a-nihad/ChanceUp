@@ -9,8 +9,7 @@ import { useDeleteUser } from "./useDeleteUser";
 function UsersRow({ user, index }) {
   const { name, phone, lot, amount, count, status, id } = user;
 
-  const { deleteUser, isDeleting } = useDeleteUser();
-  console.log(isDeleting);
+  const { deleteUser } = useDeleteUser();
 
   return (
     <div className="grid grid-cols-[0.3fr_1.8fr_1.3fr_1fr_1fr_1fr_1fr_0.1fr] items-center px-6 py-3 text-sm text-color_primary">
@@ -45,7 +44,7 @@ function UsersRow({ user, index }) {
           </Menu.List>
 
           <Modal.Window name="edit">
-            <CreateUserForm />
+            <CreateUserForm userToEdit={user} />
           </Modal.Window>
 
           <Modal.Window name="delete">

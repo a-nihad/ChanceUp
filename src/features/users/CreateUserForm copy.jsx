@@ -4,12 +4,8 @@ import FormRow from "../../ui/form/FormRow";
 import Input from "../../ui/form/Input";
 import { DevTool } from "@hookform/devtools";
 import { useCreateUser } from "./useCreateUser";
-import { useEditUser } from "./useEditUser";
 
-function CreateUserForm({ userToEdit = {}, onClose }) {
-  const { id: userId, ...editValue } = userToEdit;
-  const isEditSession = Boolean(userId);
-
+function CreateUserForm({ onClose }) {
   const {
     control,
     register,
@@ -17,29 +13,16 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
     getValues,
     formState: { errors },
     reset,
-  } = useForm({
-    defaultValues: isEditSession ? editValue : {},
-  });
+  } = useForm();
 
-  const { createUser } = useCreateUser();
-  const { editingUser } = useEditUser();
+  const { mutate } = useCreateUser();
 
   function onSubmit(data) {
-    if (isEditSession)
-      editingUser(
-        { newUser: data, id: userId },
-        {
-          onSuccess: () => {
-            reset(), onClose?.();
-          },
-        },
-      );
-    else
-      createUser(data, {
-        onSuccess: () => {
-          reset(), onClose?.();
-        },
-      });
+    mutate(data, {
+      onSuccess: () => {
+        reset(), onClose();
+      },
+    });
   }
 
   return (

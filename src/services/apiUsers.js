@@ -11,8 +11,17 @@ export async function getUsers() {
   return data;
 }
 
-export async function createEditUser(newUser) {
-  const { data, error } = await supabase.from("users").insert([newUser]);
+export async function createEditUser(newUser, id) {
+  // Create and Edit User
+  let quary = supabase.from("users");
+
+  // Create User
+  if (!id) quary = quary.insert([newUser]);
+
+  // Edit User
+  if (id) quary = quary.update(newUser).eq("id", id);
+
+  const { data, error } = await quary.select();
 
   if (error) {
     console.error(error);
