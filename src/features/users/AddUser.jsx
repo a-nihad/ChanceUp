@@ -1,6 +1,6 @@
 import { FaUserPlus } from "react-icons/fa6";
-import ButtonIcon from "../../ui/form/ButtonIcon";
-import Modal from "../../ui/form/Modal";
+import ButtonIcon from "../../ui/ButtonIcon";
+import Modal from "../../ui/Modal";
 import CreateUserForm from "./CreateUserForm";
 
 function AddUser() {

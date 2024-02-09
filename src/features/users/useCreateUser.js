@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createEditUser } from "../../services/apiUsers";
+import { toast } from "react-hot-toast";
 
 export function useCreateUser() {
   const queryClient = useQueryClient();
@@ -7,14 +8,14 @@ export function useCreateUser() {
   const { mutate } = useMutation({
     mutationFn: createEditUser,
     onSuccess: () => {
-      alert("New User successfully created");
+      toast.success("New User successfully created");
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });
     },
 
     onError: (err) => {
-      alert(err.message);
+      toast.error(err.message);
     },
   });
 

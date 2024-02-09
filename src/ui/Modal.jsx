@@ -1,4 +1,5 @@
 import { cloneElement, createContext, useContext, useState } from "react";
+import {useOutsideClick} from '../hooks/useOutsideClick'
 import { HiMiniXMark } from "react-icons/hi2";
 import ButtonIcon from "./ButtonIcon";
 import { createPortal } from "react-dom";
@@ -33,11 +34,13 @@ function Open({ children, windowName }) {
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
 
+  const ref = useOutsideClick(close)
+
   if (openName !== name) return null;
 
   return createPortal(
     <div className="fixed left-0 top-0 flex h-screen w-screen items-center justify-center backdrop-blur-sm ">
-      <div className="relative">
+      <div className="relative" ref={ref} >
         <ButtonIcon onClick={close} className="absolute right-2 top-2">
           <HiMiniXMark size={22} />
         </ButtonIcon>
