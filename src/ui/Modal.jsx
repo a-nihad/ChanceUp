@@ -24,7 +24,6 @@ function Modal({ children }) {
 // 3. Create child components
 
 function Open({ children, windowName }) {
-  console.log(windowName);
   const { open } = useContext(ModalContext);
   return cloneElement(children, {
     onClick: () => open(windowName),

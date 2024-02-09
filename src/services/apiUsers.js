@@ -12,9 +12,7 @@ export async function getUsers() {
 }
 
 export async function createEditUser(newUser) {
-  const { data, error } = await supabase
-    .from("users")
-    .insert([newUser])
+  const { data, error } = await supabase.from("users").insert([newUser]);
 
   if (error) {
     console.error(error);
@@ -22,4 +20,13 @@ export async function createEditUser(newUser) {
   }
 
   return data;
+}
+
+export async function deleteUser(id) {
+  const { error } = await supabase.from("users").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error("User could not be deleted");
+  }
 }
