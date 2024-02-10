@@ -1,9 +1,12 @@
+import Header from "../ui/Header";
+
 function Settings() {
-    return (
-        <div>
-           Settings 
-        </div>
-    )
+  return (
+    <>
+      <Header heading="Settings" />
+      <div></div>
+    </>
+  );
 }
 
-export default Settings
+export default Settings;

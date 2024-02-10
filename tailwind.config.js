@@ -16,7 +16,8 @@ export default {
         color_yellow: "#FCC43E",
         color_green: "#00E709",
         color_white: '#eff6ff',
-        color_grey: '#6b7280'
+        color_grey: '#6b7280',
+        color_grey_light: '#9ca3af'
       },
     },
   },

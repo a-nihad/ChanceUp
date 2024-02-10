@@ -1,12 +1,12 @@
 import Header from "../ui/Header";
 
-function Dashboard() {
+function Profile() {
   return (
     <>
-      <Header heading="Dashboard" />
+      <Header heading="Profile" />
       <div></div>
     </>
   );
 }
 
-export default Dashboard;
+export default Profile;

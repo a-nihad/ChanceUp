@@ -1,9 +1,12 @@
+import Header from "../ui/Header";
+
 function Records() {
-    return (
-        <div>
-            Records
-        </div>
-    )
+  return (
+    <>
+      <Header heading="Records" />
+      <div></div>
+    </>
+  );
 }
 
-export default Records
+export default Records;

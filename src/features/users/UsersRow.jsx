@@ -14,7 +14,7 @@ function UsersRow({ user, index }) {
   return (
     <div className="grid grid-cols-[0.3fr_1.8fr_1.3fr_1fr_1fr_1fr_1fr_0.1fr] items-center px-6 py-3 text-sm text-color_primary">
       <div> {index + 1} </div>
-      <div className="font-semibold"> {name} </div>
+      <div className="font-semibold capitalize">{name}</div>
       <div> {phone} </div>
       <div> {lot} </div>
       <div> {amount} </div>

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import * as hi2Icons from "react-icons/hi2";
+import * as haIcons from "react-icons/fa";
 
 function NavList({ sideBar, showSideBar }) {
   return (
@@ -54,5 +55,10 @@ const navigateList = [
     title: "Settings",
     path: "/settings",
     icon: <hi2Icons.HiCog6Tooth />,
+  },
+  {
+    title: "Profile",
+    path: "/profile",
+    icon: <haIcons.FaUserTie />,
   },
 ];

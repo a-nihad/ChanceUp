@@ -8,13 +8,13 @@ function AddUser() {
     <div>
       <Modal>
         <Modal.Open windowName="user-form">
-          <ButtonIcon >
+          <ButtonIcon>
             <FaUserPlus size={22} />
           </ButtonIcon>
         </Modal.Open>
 
         <Modal.Window name="user-form">
-          <CreateUserForm  />
+          <CreateUserForm />
         </Modal.Window>
       </Modal>
     </div>
