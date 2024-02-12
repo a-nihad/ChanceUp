@@ -2,23 +2,28 @@ import Menu from "../../ui/Menu";
 import Modal from "../../ui/Modal";
 import { MdModeEdit } from "react-icons/md";
 import { HiTrash } from "react-icons/hi2";
-import CreateUserForm from "./CreateUserForm";
+import CreateUserForm from "../users/CreateUserForm";
 import ConfirmDelete from "../../ui/ConfirmDelete";
-import { useDeleteUser } from "./useDeleteUser";
+import { useDeleteUser } from "../users/useDeleteUser";
 
-function UsersRow({ user, index }) {
-  const { name, phone, email, place, address, id } = user;
+function RecordsRow({ user, index }) {
+  const { name, lot, amount, count, status, pending, id } = user;
 
   const { deleteUser } = useDeleteUser();
 
   return (
-    <div className="grid grid-cols-[0.3fr_1.5fr_1fr_1.8fr_1fr_1.8fr_0.2fr] items-center px-6 py-3 text-sm text-color_primary">
+    <div className="grid grid-cols-[0.3fr_1.5fr_0.8fr_1fr_0.8fr_1fr_1.3fr_0.2fr] items-center px-6 py-3 text-sm text-color_primary">
       <div> {index + 1} </div>
       <div className="font-semibold capitalize">{name}</div>
-      <div> {phone} </div>
-      <div> {email} </div>
-      <div className="capitalize"> {place} </div>
-      <div className="capitalize"> {address} </div>
+      <div> {lot} </div>
+      <div> {amount} </div>
+      <div> {count} </div>
+      <div className="font-semibold"> {pending} </div>
+      <div
+        className={` w-fit rounded-md px-3 py-1 font-medium uppercase  ${status === "waiting" ? "bg-green-200 text-green-800" : "bg-red-200 text-red-700"}`}
+      >
+        {status}
+      </div>
 
       <Menu>
         <Modal>
@@ -54,4 +59,4 @@ function UsersRow({ user, index }) {
   );
 }
 
-export default UsersRow;
+export default RecordsRow;

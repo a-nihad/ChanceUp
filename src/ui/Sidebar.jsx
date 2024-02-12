@@ -1,6 +1,6 @@
-import { HiChevronLeft } from "react-icons/hi2";
-import { HiMenuAlt1 } from "react-icons/hi";
 import { useState } from "react";
+import { HiMenuAlt1 } from "react-icons/hi";
+import { HiChevronLeft } from "react-icons/hi2";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import Logo from "./Logo";
 import NavList from "./NavList";
@@ -27,7 +27,7 @@ function Sidebar() {
         className={`absolute h-screen space-y-5 bg-color_primary py-10 text-color_white duration-500 ${
           sideBar
             ? "w-64 pl-8 "
-            : "hidden bg-color_white sm:sticky sm:block sm:w-20 sm:bg-color_primary lg:w-64 lg:pl-8"
+            : "hidden bg-color_white sm:sticky sm:block sm:w-20 sm:bg-color_primary lg:min-w-64 lg:pl-8"
         }`}
         ref={ref}
       >

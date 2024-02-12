@@ -5,12 +5,16 @@ import * as haIcons from "react-icons/fa";
 function NavList({ sideBar, showSideBar }) {
   return (
     <nav>
-      <ul className={`flex flex-col space-y-1 ${sideBar?'':'hidden sm:block'}`}>
+      <ul
+        className={`flex flex-col space-y-1 ${sideBar ? "" : "hidden sm:block"}`}
+      >
         {navigateList.map((data) => (
           <NavLink
             to={data.path}
             key={data.title}
-            className={`text-color_secondary_text hover:text-color_primary_text text-md flex items-center gap-3 rounded-l-full px-7 py-3 transition-all duration-500 hover:bg-white`}
+            className={({ isActive }) => {
+              return `text-md flex items-center gap-3 rounded-l-full px-7 py-3 text-color_secondary_text transition-all duration-500 hover:bg-white hover:text-color_primary_text ${isActive && "bg-white text-color_primary_text "} `;
+            }}
             onClick={showSideBar}
           >
             <span className={`text-2xl ${!sideBar ? "hidden sm:block" : ""}`}>
