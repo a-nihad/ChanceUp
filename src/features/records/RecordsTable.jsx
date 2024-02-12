@@ -3,7 +3,7 @@ import Loader from "../../ui/Loader";
 import EmptyResult from "../../ui/EmptyResult";
 import RecordsRow from "./RecordsRow";
 
-function RecoedsTable() {
+function RecordsTable() {
   const { users, isLoading } = useUsers();
   if (isLoading) return <Loader />;
 
@@ -31,4 +31,4 @@ function RecoedsTable() {
   );
 }
 
-export default RecoedsTable;
+export default RecordsTable;

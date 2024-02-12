@@ -1,7 +1,13 @@
 import supabase from "./supabase";
 
-export async function getUsers({ search }) {
-  const { data, error } = await supabase.from("users").select("*");
+export async function getUsers({ filter }) {
+  let query = supabase.from("users").select("*");
+
+  // Filtering
+  if (filter !== null)
+    query = query[filter.method || "eq"](filter.field, filter.value);
+
+  const { data, error } = await query;
 
   if (error) {
     console.error(error);
@@ -11,8 +17,8 @@ export async function getUsers({ search }) {
   return data;
 }
 
+// Create and Edit User
 export async function createEditUser(newUser, id) {
-  // Create and Edit User
   let quary = supabase.from("users");
 
   // Create User
