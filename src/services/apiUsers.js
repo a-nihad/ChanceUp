@@ -1,11 +1,16 @@
 import supabase from "./supabase";
 
-export async function getUsers({ filter }) {
+export async function getUsers({ filter, sortBy }) {
   let query = supabase.from("users").select("*");
 
   // Filtering
-  if (filter !== null)
-    query = query[filter.method || "eq"](filter.field, filter.value);
+  if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
+
+  // Soring
+  if (sortBy)
+    query = query.order(sortBy.field, {
+      ascending: sortBy.direction === "asc",
+    });
 
   const { data, error } = await query;
 

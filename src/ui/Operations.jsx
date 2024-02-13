@@ -1,16 +1,16 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
   IoIosArrowDropdownCircle,
   IoIosArrowDropupCircle,
 } from "react-icons/io";
 import { useOutsideClick } from "../hooks/useOutsideClick";
-import { useSearchParams } from "react-router-dom";
 
-function Filter({ filterField, options }) {
+function Operations({ filterField, options, defaultValue }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const value = searchParams.get("status") || "Filter";
+  const value = searchParams.get(filterField) || defaultValue;
   const ref = useOutsideClick(() => setIsOpen(false));
 
   const handleClick = (value) => {
@@ -22,10 +22,10 @@ function Filter({ filterField, options }) {
   return (
     <div ref={ref}>
       <button
-        className=" flex w-36 cursor-pointer justify-between rounded-full bg-white px-4 py-2 text-color_primary_text"
+        className=" flex w-44 cursor-pointer justify-between rounded-full bg-white px-4 py-2 text-color_primary_text"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="uppercase"> {value} </span>
+        <span className="capitalize"> {value} </span>
         {isOpen ? (
           <IoIosArrowDropupCircle size={22} />
         ) : (
@@ -52,4 +52,4 @@ function Filter({ filterField, options }) {
   );
 }
 
-export default Filter;
+export default Operations;

@@ -3,7 +3,7 @@ import Loader from "../../ui/Loader";
 import UsersRow from "./UsersRow";
 
 function UsersTable() {
-  const { users, isLoading, error } = useUsers();
+  const { users, isLoading } = useUsers();
   if (isLoading) return <Loader />;
 
   return (
