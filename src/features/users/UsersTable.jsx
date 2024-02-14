@@ -1,9 +1,10 @@
 import { useUsers } from "./useUsers";
 import Loader from "../../ui/Loader";
 import UsersRow from "./UsersRow";
+import Pagination from "../../ui/Pagination";
 
 function UsersTable() {
-  const { users, isLoading } = useUsers();
+  const { users, isLoading, count } = useUsers();
   if (isLoading) return <Loader />;
 
   return (
@@ -22,6 +23,8 @@ function UsersTable() {
         {users.map((user, index) => (
           <UsersRow key={user.id} user={user} index={index} />
         ))}
+
+        {<Pagination count={count} />}
       </div>
     </>
   );

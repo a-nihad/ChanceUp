@@ -3,10 +3,10 @@ import { useSearchParams } from "react-router-dom";
 
 function SearchBar() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const inputValue = searchParams.get("search");
 
   const handleChange = (value) => {
     searchParams.set("search", value);
+    if (searchParams.get("page")) searchParams.set("page", 1);
     setSearchParams(searchParams);
   };
 

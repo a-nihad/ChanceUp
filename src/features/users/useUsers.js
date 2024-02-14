@@ -19,18 +19,22 @@ export function useUsers() {
   const [field, direction] = sortValue.split("-");
   const sortBy = { field, direction };
 
+  // Searching
+  const search = searchParams.get("search");
+
+  // Pagination
+  const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+
   // ******************
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["user", filter, sortBy],
-    queryFn: () => getUsers({ filter, sortBy }),
+  const {
+    data: { data: users, count } = {},
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["user", filter, sortBy, page, search],
+    queryFn: () => getUsers({ filter, sortBy, page, search }),
   });
 
-  // Search
-  const search = searchParams.get("search");
-  const users = search
-    ? data.filter((value) => value.name.toLowerCase().includes(search))
-    : data;
-
-  return { users, isLoading, error };
+  return { users, isLoading, error, count };
 }

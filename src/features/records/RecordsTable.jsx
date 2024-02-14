@@ -2,12 +2,11 @@ import { useUsers } from "../../features/users/useUsers";
 import Loader from "../../ui/Loader";
 import EmptyResult from "../../ui/EmptyResult";
 import RecordsRow from "./RecordsRow";
+import Pagination from "../../ui/Pagination";
 
 function RecordsTable() {
-  const { users, isLoading } = useUsers();
+  const { users, isLoading, count } = useUsers();
   if (isLoading) return <Loader />;
-
-  if (users.length == 0) return <EmptyResult />;
 
   return (
     <>
@@ -26,6 +25,8 @@ function RecordsTable() {
         {users.map((user, index) => (
           <RecordsRow key={user.id} user={user} index={index} />
         ))}
+
+        <Pagination count={count} />
       </div>
     </>
   );
