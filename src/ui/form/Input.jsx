@@ -6,7 +6,7 @@ function Input({ register, id, required, ...props }) {
       {required ? (
         <input
           {...register(id, { required: "This field is require" })}
-          className={className}
+          className={className }
           {...props}
         />
       ) : (

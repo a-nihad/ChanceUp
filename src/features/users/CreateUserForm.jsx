@@ -25,7 +25,6 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
   const { editingUser } = useEditUser();
 
   function onSubmit(data) {
-
     data.amount = data.lot * 1000;
     data.pending = 8 - data.count;
 
@@ -50,7 +49,7 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-max divide-y rounded-lg bg-color_white px-10 py-5 shadow-lg"
+        className="no-scrollbar z-50 max-h-[500px] w-max divide-y overflow-y-scroll rounded-lg bg-color_white px-10 py-5 shadow-lg md:pr-12 lg:max-h-[580px] lg:pr-0"
       >
         <FormRow label="Full Name" error={errors?.name?.message}>
           <Input type="text" id="name" register={register} required={true} />
@@ -76,10 +75,6 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
           <Input type="number" id="lot" register={register} required={true} />
         </FormRow>
 
-        {/* <FormRow label="Amount" error={errors?.amount?.message}>
-          <Input type="number" id="amount" register={register} />
-        </FormRow> */}
-
         <FormRow label="Count" error={errors?.count?.message}>
           <Input
             type="number"
@@ -88,10 +83,6 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
             defaultValue={0}
           />
         </FormRow>
-
-        {/* <FormRow label="Pending" error={errors?.pending?.message}>
-          <Input type="text" id="pending" register={register} />
-        </FormRow> */}
 
         <FormRow label="Status" error={errors?.status?.message}>
           <Input

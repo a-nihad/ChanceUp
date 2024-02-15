@@ -8,8 +8,11 @@ function AddUser() {
     <div>
       <Modal>
         <Modal.Open windowName="user-form">
-          <ButtonIcon>
-            <FaUserPlus size={22} />
+          <ButtonIcon variation="special_Primary">
+            <span className="flex items-center justify-between gap-5 p-1 md:py-0 lg:w-40">
+              <span className="hidden md:block"> Add User </span>
+              <FaUserPlus size={18} />
+            </span>
           </ButtonIcon>
         </Modal.Open>
 

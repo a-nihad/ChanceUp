@@ -11,7 +11,7 @@ function SearchBar() {
   };
 
   return (
-    <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-color_primary">
+    <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-color_primary grow max-w-96 ">
       <HiMiniMagnifyingGlass size={20} />
       <input
         type="text"

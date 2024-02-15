@@ -53,7 +53,6 @@ function List({ id, children }) {
 
   const ref = useOutsideClick(close);
 
-
   if (openId !== id) return null;
 
   return createPortal(

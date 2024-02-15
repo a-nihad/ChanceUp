@@ -29,8 +29,8 @@ function Pagination({ count }) {
   if (pageCount <= 1) return null;
 
   return (
-    <div className="flex items-center justify-between p-3 px-10">
-      <p className="text-color_grey">
+    <div className="flex items-center rounded-b-lg bg-white p-3 px-10 md:justify-between ">
+      <p className="hidden w-96 text-color_grey md:block ">
         Showing
         <span className="font-bold"> {(currentPage - 1) * PAGE_SIZE + 1} </span>
         to
@@ -41,7 +41,7 @@ function Pagination({ count }) {
         <span className="font-bold"> {count} </span>
         results.
       </p>
-      <div className="flex gap-2">
+      <div className="flex w-full justify-between gap-2 md:justify-end">
         <ButtonIcon
           onClick={prevPage}
           disabled={currentPage === 1}

@@ -6,7 +6,7 @@ function NavList({ sideBar, showSideBar }) {
   return (
     <nav>
       <ul
-        className={`flex flex-col space-y-1 ${sideBar ? "" : "hidden sm:block"}`}
+        className={`flex flex-col space-y-1 ${sideBar ? "" : "fixed hidden sm:block lg:static "}`}
       >
         {navigateList.map((data) => (
           <NavLink

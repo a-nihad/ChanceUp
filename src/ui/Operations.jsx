@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  IoIosArrowDropdownCircle,
-  IoIosArrowDropupCircle,
-} from "react-icons/io";
+import { IoIosArrowDropupCircle } from "react-icons/io";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
-function Operations({ filterField, options, defaultValue }) {
+function Operations({ filterField, options, defaultValue, icon }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -21,21 +18,20 @@ function Operations({ filterField, options, defaultValue }) {
   };
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="relative">
       <button
-        className=" flex w-44 cursor-pointer justify-between rounded-full bg-white px-4 py-2 text-color_primary_text"
+        className=" flex cursor-pointer items-center justify-between rounded-full bg-white p-3 text-color_primary_text md:w-32 md:px-4 md:py-2 lg:w-44"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="capitalize"> {value} </span>
-        {isOpen ? (
-          <IoIosArrowDropupCircle size={22} />
-        ) : (
-          <IoIosArrowDropdownCircle size={22} />
-        )}
+        <span className={`hidden capitalize md:block lg:hidden `}>
+          {defaultValue}
+        </span>
+        <span className={`hidden capitalize lg:block`}> {value} </span>
+        {isOpen ? <IoIosArrowDropupCircle /> : icon}
       </button>
 
       {isOpen && (
-        <div className="absolute mt-1 flex w-36 flex-col divide-y-2 rounded-xl bg-white p-3">
+        <div className="absolute right-0 z-30 mt-1 flex w-36 flex-col divide-y-2 rounded-xl bg-white p-3 sm:left-0">
           {options.map((option) => {
             return (
               <button
