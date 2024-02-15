@@ -26,8 +26,8 @@ function Sidebar() {
       <div
         className={`fixed z-40 min-h-screen space-y-5 bg-color_primary py-10 text-color_white duration-500 ${
           sideBar
-            ? "w-64 pl-8 "
-            : "hidden bg-color_white sm:sticky sm:block sm:w-20 sm:bg-color_primary lg:min-w-64 lg:pl-8"
+            ? "w-64 pl-8"
+            : " hidden bg-color_white sm:block sm:w-20 sm:bg-color_primary lg:top-0 lg:min-w-64 lg:pl-8"
         }`}
         ref={ref}
       >

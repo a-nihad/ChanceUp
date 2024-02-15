@@ -4,7 +4,7 @@ import UsersRow from "./UsersRow";
 import Pagination from "../../ui/Pagination";
 
 function UsersTable() {
-  const { users, isLoading, count } = useUsers();
+  const { users, isLoading, dataCount } = useUsers();
   if (isLoading) return <Loader />;
 
   return (
@@ -26,7 +26,7 @@ function UsersTable() {
           ))}
         </div>
 
-        {<Pagination count={count} />}
+        {<Pagination count={dataCount} />}
       </div>
     </>
   );

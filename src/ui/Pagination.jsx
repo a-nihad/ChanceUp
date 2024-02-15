@@ -6,9 +6,6 @@ export const PAGE_SIZE = 9;
 
 function Pagination({ count }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get("search");
-
-  if (search) return null;
 
   const currentPage = !searchParams.get("page")
     ? 1
@@ -20,6 +17,7 @@ function Pagination({ count }) {
     searchParams.set("page", prev);
     setSearchParams(searchParams);
   }
+
   function nextPage() {
     const next = currentPage === pageCount ? currentPage : currentPage + 1;
     searchParams.set("page", next);

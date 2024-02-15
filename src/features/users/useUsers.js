@@ -1,10 +1,9 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "../../services/apiUsers";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../ui/Pagination";
 
 export function useUsers() {
-  const queryClint = useQueryClient();
   const [searchParams] = useSearchParams();
 
   // Filtering
@@ -21,36 +20,25 @@ export function useUsers() {
   const [field, direction] = sortValue.split("-");
   const sortBy = { field, direction };
 
+  // Query
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["user", filter, sortBy],
+    queryFn: () => getUsers({ filter, sortBy }),
+  });
+
   // Searching
   const search = searchParams.get("search");
+  const searched = !search
+    ? data || {}
+    : data.filter((value) => value.name.toLowerCase().includes(search));
+
+  const dataCount = searched.length;
 
   // Pagination
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+  const from = (page - 1) * PAGE_SIZE;
+  const to = page * PAGE_SIZE;
+  const users = searched.length > 1 ? searched.slice(from, to) : searched;
 
-  // Query
-  const {
-    data: { data: users, count } = {},
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["user", filter, sortBy, page, search],
-    queryFn: () => getUsers({ filter, sortBy, page, search }),
-  });
-
-  // Pre-Fetching
-  const pageCount = Math.ceil(count / PAGE_SIZE);
-
-  if (page < pageCount)
-    queryClint.prefetchQuery({
-      queryKey: ["user", filter, sortBy, page + 1, search],
-      queryFn: () => getUsers({ filter, sortBy, page: page + 1, search }),
-    });
-
-  if (page > 1)
-    queryClint.prefetchQuery({
-      queryKey: ["user", filter, sortBy, page - 1, search],
-      queryFn: () => getUsers({ filter, sortBy, page: page - 1, search }),
-    });
-
-  return { users, isLoading, error, count };
+  return { users, isLoading, error, dataCount };
 }

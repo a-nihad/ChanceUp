@@ -5,8 +5,10 @@ import RecordsRow from "./RecordsRow";
 import Pagination from "../../ui/Pagination";
 
 function RecordsTable() {
-  const { users, isLoading, count } = useUsers();
+  const { users, isLoading, dataCount } = useUsers();
   if (isLoading) return <Loader />;
+
+  console.log(users);
 
   return (
     <>
@@ -28,7 +30,7 @@ function RecordsTable() {
           ))}
         </div>
 
-        <Pagination count={count} />
+        <Pagination count={dataCount} />
       </div>
     </>
   );

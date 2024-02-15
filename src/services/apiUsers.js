@@ -1,8 +1,7 @@
-import { PAGE_SIZE } from "../ui/Pagination";
 import supabase from "./supabase";
 
-export async function getUsers({ filter, sortBy, page, search }) {
-  let query = supabase.from("users").select("*", { count: "exact" });
+export async function getUsers({ filter, sortBy }) {
+  let query = supabase.from("users").select("*");
 
   // Filtering
   if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
@@ -13,24 +12,14 @@ export async function getUsers({ filter, sortBy, page, search }) {
       ascending: sortBy.direction === "asc",
     });
 
-  // Searching
-  if (search) query = query.textSearch("name", search);
-
-  // Pagination
-  if (page) {
-    const from = (page - 1) * PAGE_SIZE;
-    const to = page * PAGE_SIZE - 1;
-    query = query.range(from, to);
-  }
-
-  const { data, error, count } = await query;
+  const { data, error } = await query;
 
   if (error) {
     console.error(error);
     throw new Error("Users could not be loaded");
   }
 
-  return { data, count };
+  return data;
 }
 
 // Create and Edit User
