@@ -40,7 +40,7 @@ function Window({ children, name }) {
   return createPortal(
     <div className="fixed left-0 top-0 z-40 flex h-screen w-screen items-center justify-center backdrop-blur-sm ">
       <div className="relative" ref={ref}>
-        <ButtonIcon onClick={close} className="absolute right-2 top-2">
+        <ButtonIcon onClick={close} className="absolute right-2 top-2 z-30 ">
           <HiMiniXMark size={22} />
         </ButtonIcon>
         <div> {cloneElement(children, { onClose: close })} </div>

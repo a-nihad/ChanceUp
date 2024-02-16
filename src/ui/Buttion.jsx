@@ -3,6 +3,7 @@ function Buttion({
   onClick,
   disabled,
   variation = "primary",
+  className,
   ...props
 }) {
   const primary =
@@ -14,7 +15,7 @@ function Buttion({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`rounded-lg px-4 py-2 ${variation === "secondary" ? secondary : variation === 'danger' ? danger : primary}`}
+      className={`rounded-lg px-4 py-2 ${className}  ${variation === "secondary" ? secondary : variation === "danger" ? danger : primary}`}
       {...props}
     >
       {children}

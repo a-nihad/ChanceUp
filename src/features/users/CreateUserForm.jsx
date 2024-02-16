@@ -1,12 +1,15 @@
 import { Form, useForm } from "react-hook-form";
-import Buttion from "../../ui/Buttion";
-import FormRow from "../../ui/form/FormRow";
-import Input from "../../ui/form/Input";
 import { DevTool } from "@hookform/devtools";
 import { useCreateUser } from "./useCreateUser";
 import { useEditUser } from "./useEditUser";
+import { useSettings } from "../settings/useSettings";
+import Buttion from "../../ui/Buttion";
+import FormRow from "../../ui/form/FormRow";
+import Input from "../../ui/form/Input";
 
 function CreateUserForm({ userToEdit = {}, onClose }) {
+  const { settings: { perLotPrice, currentInstalment } = {} } = useSettings();
+
   const { id: userId, ...editValue } = userToEdit;
   const isEditSession = Boolean(userId);
 
@@ -14,7 +17,6 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
     control,
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
     reset,
   } = useForm({
@@ -25,8 +27,10 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
   const { editingUser } = useEditUser();
 
   function onSubmit(data) {
-    data.amount = data.lot * 1000;
-    data.pending = 8 - data.count;
+    data.amount = data.lot * perLotPrice;
+    data.pending = currentInstalment - data.instalment;
+    data.lotCount = !data.lotCount ? data.lot : data.lotCount;
+    data.status = !data.status ? "waiting" : data.status;
 
     if (isEditSession)
       editingUser(
@@ -71,25 +75,16 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
           <Input type="text" id="address" register={register} required={true} />
         </FormRow>
 
-        <FormRow label="Lot" error={errors?.lot?.message}>
+        <FormRow label="Lots" error={errors?.lot?.message}>
           <Input type="number" id="lot" register={register} required={true} />
         </FormRow>
 
-        <FormRow label="Count" error={errors?.count?.message}>
+        <FormRow label="Instalments" error={errors?.instalment?.message}>
           <Input
             type="number"
-            id="count"
+            id="instalment"
             register={register}
-            defaultValue={0}
-          />
-        </FormRow>
-
-        <FormRow label="Status" error={errors?.status?.message}>
-          <Input
-            type="text"
-            id="status"
-            register={register}
-            defaultValue="waiting"
+            defaultValue={0} 
           />
         </FormRow>
 
