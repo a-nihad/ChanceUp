@@ -1,6 +1,6 @@
+import { FaFilter, FaSortAlphaDownAlt } from "react-icons/fa";
 import Operations from "../../ui/Operations";
 import SearchBar from "../../ui/SearchBar";
-import { FaFilter, FaSortAlphaDownAlt } from "react-icons/fa";
 
 function RecordsTableOperations() {
   return (

@@ -13,7 +13,7 @@ function NavList({ sideBar, showSideBar }) {
             to={data.path}
             key={data.title}
             className={({ isActive }) => {
-              return `text-md flex items-center gap-3 rounded-l-full px-7 py-3 text-color_secondary_text transition-all duration-500 hover:bg-white hover:text-color_primary_text ${isActive && "bg-white text-color_primary_text "} `;
+              return `text-md flex items-center gap-3 rounded-l-full px-7 py-3 transition-all duration-500 hover:bg-white hover:text-color_primary ${isActive && "bg-white text-color_primary "} `;
             }}
             onClick={showSideBar}
           >
@@ -46,8 +46,8 @@ const navigateList = [
     icon: <hi2Icons.HiMiniCheckCircle />,
   },
   {
-    title: "Users",
-    path: "/users",
+    title: "Members",
+    path: "/members",
     icon: <hi2Icons.HiUsers />,
   },
   {

@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "../../services/apiUsers";
+import { getMembers } from "../../services/apiMembers";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../ui/Pagination";
 
-export function useUsers() {
+export function useMembers() {
   const [searchParams] = useSearchParams();
 
   // Filtering
@@ -22,8 +22,8 @@ export function useUsers() {
 
   // Query
   const { data, isLoading, error } = useQuery({
-    queryKey: ["user", filter, sortBy],
-    queryFn: () => getUsers({ filter, sortBy }),
+    queryKey: ["member", filter, sortBy],
+    queryFn: () => getMembers({ filter, sortBy }),
   });
 
   // Searching
@@ -38,7 +38,7 @@ export function useUsers() {
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
   const from = (page - 1) * PAGE_SIZE;
   const to = page * PAGE_SIZE;
-  const users = searched.length > 1 ? searched.slice(from, to) : searched;
+  const members = searched.length > 1 ? searched.slice(from, to) : searched;
 
-  return { users, isLoading, error, dataCount };
+  return { members, isLoading, error, dataCount };
 }

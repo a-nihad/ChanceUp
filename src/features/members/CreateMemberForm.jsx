@@ -1,17 +1,17 @@
-import { Form, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { useCreateUser } from "./useCreateUser";
-import { useEditUser } from "./useEditUser";
+import { useCreateMember } from "./useCreateMember";
+import { useEditMember } from "./useEditMember";
 import { useSettings } from "../settings/useSettings";
 import Buttion from "../../ui/Buttion";
 import FormRow from "../../ui/form/FormRow";
 import Input from "../../ui/form/Input";
 
-function CreateUserForm({ userToEdit = {}, onClose }) {
+function CreateMemberForm({ memberToEdit = {}, onClose }) {
   const { settings: { perLotPrice, currentInstalment } = {} } = useSettings();
 
-  const { id: userId, ...editValue } = userToEdit;
-  const isEditSession = Boolean(userId);
+  const { id: memberId, ...editValue } = memberToEdit;
+  const isEditSession = Boolean(memberId);
 
   const {
     control,
@@ -23,8 +23,8 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
     defaultValues: isEditSession ? editValue : {},
   });
 
-  const { createUser } = useCreateUser();
-  const { editingUser } = useEditUser();
+  const { createMember } = useCreateMember();
+  const { editMember } = useEditMember();
 
   function onSubmit(data) {
     data.amount = data.lot * perLotPrice;
@@ -33,8 +33,8 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
     data.status = !data.status ? "waiting" : data.status;
 
     if (isEditSession)
-      editingUser(
-        { newUser: data, id: userId },
+      editMember(
+        { newMember: data, id: memberId },
         {
           onSuccess: () => {
             reset(), onClose?.();
@@ -42,7 +42,7 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
         },
       );
     else
-      createUser(data, {
+      createMember(data, {
         onSuccess: () => {
           reset(), onClose?.();
         },
@@ -84,7 +84,7 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
             type="number"
             id="instalment"
             register={register}
-            defaultValue={0} 
+            defaultValue={0}
           />
         </FormRow>
 
@@ -102,4 +102,4 @@ function CreateUserForm({ userToEdit = {}, onClose }) {
   );
 }
 
-export default CreateUserForm;
+export default CreateMemberForm;

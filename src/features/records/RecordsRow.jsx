@@ -1,23 +1,26 @@
-import Menu from "../../ui/Menu";
-import Modal from "../../ui/Modal";
 import { MdModeEdit } from "react-icons/md";
 import { HiTrash, HiMinusCircle, HiCheckCircle } from "react-icons/hi2";
-import CreateUserForm from "../users/CreateUserForm";
+import Menu from "../../ui/Menu";
+import Modal from "../../ui/Modal";
+import CreateMemberForm from "../members/CreateMemberForm";
 import ConfirmDelete from "../../ui/ConfirmDelete";
-import { useDeleteUser } from "../users/useDeleteUser";
+import { useDeleteMember } from "../members/useDeleteMember";
 
-function RecordsRow({ user, index }) {
-  const { name, lot, amount, instalment, status, pending, lotCount, id } = user;
+function RecordsRow({ member, index }) {
+  const { name, lot, amount, instalment, status, pending, lotCount, id } =
+    member;
 
-  const { deleteUser } = useDeleteUser();
+  const { deleteMember } = useDeleteMember();
 
   return (
-    <div className="grid grid-cols-[40px_1.8fr_1fr_1fr_1fr_28px] items-center px-4 py-3 text-center text-sm text-color_primary md:grid-cols-[40px_1.8fr_1fr_1fr_1fr_1fr_1fr_28px] lg:grid-cols-[40px_1.8fr_1fr_1fr_1fr_1fr_1fr_1fr_28px]">
+    <div className="hover:bg-color_grey_light grid grid-cols-[40px_1.8fr_1fr_1fr_1fr_28px] items-center px-4 py-3 text-center text-sm text-color_text hover:text-color_primary md:grid-cols-[40px_1.8fr_1fr_1fr_1fr_1fr_1fr_28px] lg:grid-cols-[40px_1.8fr_1fr_1fr_1fr_1fr_1fr_1fr_28px]">
       <div className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-300">
         {index + 1}
       </div>
       <div className="flex flex-col text-left">
-        <div className="font-semibold capitalize ">{name}</div>
+        <div className="font-semibold capitalize text-color_primary ">
+          {name}
+        </div>
         <div className="text-color_grey before:content-['Lot:-'] md:hidden ">
           {lot}
         </div>
@@ -32,13 +35,15 @@ function RecordsRow({ user, index }) {
       >
         <span className="lg:hidden">
           {status === "waiting" ? (
-            <HiMinusCircle size={22} color="#34d399" />
+            <HiMinusCircle size={22} color="#0369a1" />
+          ) : status === "holding" ? (
+            <HiMinusCircle size={22} color="#a16207" />
           ) : (
-            <HiCheckCircle size={22} color="#f87171" />
+            <HiCheckCircle size={22} color="#15803d" />
           )}
         </span>
         <span
-          className={`hidden rounded-md px-3 py-1 lg:block ${status === "waiting" ? "bg-green-200 text-green-800" : "bg-red-200 text-red-700"}`}
+          className={`hidden rounded-md px-3 py-1 lg:block ${status === "waiting" ? "bg-color_blue_light text-color_blue" : status === "holding" ? "bg-color_yellow_light text-color_yellow" : "bg-color_green_light text-color_green"}`}
         >
           {status}
         </span>
@@ -63,13 +68,13 @@ function RecordsRow({ user, index }) {
           </Menu.List>
 
           <Modal.Window name="edit">
-            <CreateUserForm userToEdit={user} />
+            <CreateMemberForm memberToEdit={member} />
           </Modal.Window>
 
           <Modal.Window name="delete">
             <ConfirmDelete
-              resourceName="User"
-              onConfirm={() => deleteUser(id)}
+              resourceName="Member"
+              onConfirm={() => deleteMember(id)}
             />
           </Modal.Window>
         </Modal>

@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
-import Users from "../pages/Users";
+import Members from "../pages/Members";
 import Records from "../pages/Records";
 import Installments from "../pages/Installments";
 import Settings from "../pages/Settings";
@@ -15,7 +15,7 @@ function Router() {
       <Route element={<AppLayout />}>
         <Route index element={<Navigate replace to="dashboard" />} />
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="users" element={<Users />} />
+        <Route path="members" element={<Members />} />
         <Route path="records" element={<Records />} />
         <Route path="installments" element={<Installments />} />
         <Route path="settings" element={<Settings />} />

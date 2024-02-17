@@ -1,12 +1,5 @@
-import Header from "../ui/Header";
-
 function Installments() {
-  return (
-    <>
-      <Header heading="Installments" />
-      <div></div>
-    </>
-  );
+  return <div> Installments </div>;
 }
 
 export default Installments;

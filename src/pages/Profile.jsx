@@ -1,12 +1,5 @@
-import Header from "../ui/Header";
-
 function Profile() {
-  return (
-    <>
-      <Header heading="Profile" />
-      <div></div>
-    </>
-  );
+  return <div> Profile </div>;
 }
 
 export default Profile;
