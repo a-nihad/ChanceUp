@@ -2,9 +2,9 @@ import { useForm } from "react-hook-form";
 import { useSettings } from "./useSettings";
 import { useEditSettings } from "./useEditSettings";
 import Loader from "../../ui/Loader";
-import FormRow from "../../ui/form/FormRow";
-import Input from "../../ui/form/Input";
+import Input from "../../ui/Input";
 import Buttion from "../../ui/Buttion";
+import Label from "../../ui/Label";
 
 function EditSettingsForm() {
   const {
@@ -25,36 +25,42 @@ function EditSettingsForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-3 rounded-lg"
+      className="flex max-w-[400px] flex-col gap-3 rounded-lg px-4 py-2 text-sm sm:px-8 sm:py-5 sm:text-base "
     >
-      <FormRow label="Total Instalment" variation={"special"}>
+      <div className="flex items-center justify-between gap-5">
+        <Label id="totalInstallment"> Total Installment </Label>
         <Input
           type="number"
           id="totalInstallment"
           register={register}
           defaultValue={totalInstallment}
+          className="w-[150px]"
         />
-      </FormRow>
+      </div>
 
-      <FormRow label="Lot Price" variation={"special"}>
+      <div className="flex items-center justify-between gap-5">
+        <Label id="perLotPrice"> Lot Price </Label>
         <Input
           type="number"
           id="perLotPrice"
           register={register}
           defaultValue={perLotPrice}
+          className="w-[150px]"
         />
-      </FormRow>
+      </div>
 
-      <FormRow label="Current Instalment" variation={"special"}>
+      <div className="flex items-center justify-between gap-5">
+        <Label id="currentInstalment"> Current Installment </Label>
         <Input
           type="number"
           id="currentInstalment"
           register={register}
           defaultValue={currentInstalment}
+          className="w-[150px]"
         />
-      </FormRow>
+      </div>
 
-      <Buttion className="mt-5 w-[400px]">Update Setting</Buttion>
+      <Buttion className="mt-5">Update Setting</Buttion>
     </form>
   );
 }

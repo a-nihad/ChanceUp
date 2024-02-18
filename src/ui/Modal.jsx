@@ -30,7 +30,7 @@ function Open({ children, windowName }) {
   });
 }
 
-function Window({ children, name }) {
+function Window({ children, name, className }) {
   const { openName, close } = useContext(ModalContext);
 
   const ref = useOutsideClick(close);
@@ -38,12 +38,14 @@ function Window({ children, name }) {
   if (openName !== name) return null;
 
   return createPortal(
-    <div className="fixed left-0 top-0 z-40 flex h-screen w-screen items-center justify-center backdrop-blur-sm ">
+    <div
+      className={`fixed left-0 top-0 z-40 flex h-screen w-screen items-center justify-center backdrop-blur-sm `}
+    >
       <div className="relative" ref={ref}>
         <ButtonIcon
           variation="special_Primary"
           onClick={close}
-          className="absolute right-2 top-2 z-30 "
+          className={`absolute right-2 top-2 z-30 ${className} `}
         >
           <HiMiniXMark size={22} />
         </ButtonIcon>

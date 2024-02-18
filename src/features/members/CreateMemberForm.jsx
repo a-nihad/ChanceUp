@@ -5,7 +5,7 @@ import { useEditMember } from "./useEditMember";
 import { useSettings } from "../settings/useSettings";
 import Buttion from "../../ui/Buttion";
 import FormRow from "../../ui/form/FormRow";
-import Input from "../../ui/form/Input";
+import FormInput from "../../ui/form/FormInput";
 
 function CreateMemberForm({ memberToEdit = {}, onClose }) {
   const { settings: { perLotPrice, currentInstalment } = {} } = useSettings();
@@ -27,6 +27,7 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
   const { editMember } = useEditMember();
 
   function onSubmit(data) {
+    data.instalment = !data.instalment ? 0 : data.instalment;
     data.amount = data.lot * perLotPrice;
     data.pending = currentInstalment - data.instalment;
     data.lotCount = !data.lotCount ? data.lot : data.lotCount;
@@ -50,55 +51,89 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
   }
 
   return (
-    <>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="no-scrollbar z-50 max-h-[500px] w-max divide-y overflow-y-scroll rounded-lg bg-color_white px-10 py-5 shadow-lg md:pr-12 lg:max-h-[580px] lg:pr-0"
+    <div className={`w-screen sm:w-fit`}>
+      <div
+        className={`no-scrollbar z-50 mx-5 overflow-y-scroll rounded-xl border shadow-lg sm:m-0`}
       >
-        <FormRow label="Full Name" error={errors?.name?.message}>
-          <Input type="text" id="name" register={register} required={true} />
-        </FormRow>
+        <h1 className="sticky top-0 bg-color_primary p-3 text-lg font-semibold text-color_light sm:px-5">
+          {isEditSession ? "Edit" : "Create"} Member
+        </h1>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-color_white px-5 py-2 sm:px-8 sm:py-5"
+        >
+          <div className=" gap-x-3 sm:grid">
+            <FormRow label="Full Name" error={errors?.name?.message}>
+              <FormInput
+                type="text"
+                id="name"
+                register={register}
+                required={true}
+                placeholder="Full Name"
+              />
+            </FormRow>
 
-        <FormRow label="Phone" error={errors?.phone?.message}>
-          <Input type="text" id="phone" register={register} required={true} />
-        </FormRow>
+            <FormRow label="Phone Number" error={errors?.phone?.message}>
+              <FormInput
+                type="text"
+                id="phone"
+                register={register}
+                required={true}
+                placeholder="Phone Number"
+              />
+            </FormRow>
 
-        <FormRow label="Email" error={errors?.email?.message}>
-          <Input type="email" id="email" register={register} required={true} />
-        </FormRow>
+            <FormRow label="Email" error={errors?.email?.message}>
+              <FormInput
+                type="email"
+                id="email"
+                register={register}
+                required={true}
+                placeholder="Email"
+              />
+            </FormRow>
 
-        <FormRow label="Place" error={errors?.place?.message}>
-          <Input type="text" id="place" register={register} required={true} />
-        </FormRow>
+            <FormRow label="Place" error={errors?.place?.message}>
+              <FormInput
+                type="text"
+                id="place"
+                register={register}
+                required={true}
+                placeholder="Place"
+              />
+            </FormRow>
 
-        <FormRow label="Address" error={errors?.address?.message}>
-          <Input type="text" id="address" register={register} required={true} />
-        </FormRow>
+            <FormRow label="Address" error={errors?.address?.message}>
+              <FormInput
+                type="text"
+                id="address"
+                register={register}
+                required={true}
+                placeholder="Address"
+              />
+            </FormRow>
 
-        <FormRow label="Lots" error={errors?.lot?.message}>
-          <Input type="number" id="lot" register={register} required={true} />
-        </FormRow>
+            <FormRow label="Lots" error={errors?.lot?.message}>
+              <FormInput
+                type="number"
+                id="lot"
+                register={register}
+                required={true}
+                placeholder="Lots"
+              />
+            </FormRow>
 
-        <FormRow label="Instalments" error={errors?.instalment?.message}>
-          <Input
-            type="number"
-            id="instalment"
-            register={register}
-            defaultValue={0}
-          />
-        </FormRow>
-
-        <FormRow>
-          <div className="col-start-3 space-x-3">
-            <Buttion onClick={onClose} variation="secondary" type="reset">
-              Cancel
-            </Buttion>
-            <Buttion> Create New </Buttion>
+            <div className="col-span-2 flex justify-end space-x-4 px-2 py-4">
+              <Buttion onClick={onClose} variation="secondary" type="reset">
+                Cancel
+              </Buttion>
+              <Buttion> {isEditSession ? "Update " : "Create "} </Buttion>
+            </div>
           </div>
-        </FormRow>
-      </form>
-      <DevTool control={control} />
-    </>
+        </form>
+        <DevTool control={control} />
+      </div>
+    </div>
   );
 }
 

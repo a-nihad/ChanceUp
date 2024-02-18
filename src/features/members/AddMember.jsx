@@ -16,7 +16,7 @@ function AddMember() {
           </ButtonIcon>
         </Modal.Open>
 
-        <Modal.Window name="user-form">
+        <Modal.Window name="user-form" className="right-7 sm:right-2">
           <CreateMemberForm />
         </Modal.Window>
       </Modal>

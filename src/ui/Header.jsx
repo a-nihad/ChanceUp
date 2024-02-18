@@ -1,6 +1,12 @@
-import { HiArrowRightOnRectangle, HiMiniMoon } from "react-icons/hi2";
+import {
+  HiArrowRightOnRectangle,
+  HiMiniMoon,
+  HiCalendarDays,
+} from "react-icons/hi2";
 import { useLocation } from "react-router-dom";
 import ButtonIcon from "./ButtonIcon";
+import Modal from "./Modal";
+import WeekCount from "../features/settings/WeekCount";
 
 function Header() {
   const { pathname } = useLocation();
@@ -11,6 +17,18 @@ function Header() {
       </h1>
 
       <div className="flex gap-2 text-color_primary">
+        <Modal>
+          <Modal.Open windowName="next_week">
+            <ButtonIcon>
+              <HiCalendarDays size={22} />
+            </ButtonIcon>
+          </Modal.Open>
+
+          <Modal.Window name="next_week" className='hidden' >
+            <WeekCount />
+          </Modal.Window>
+        </Modal>
+
         <ButtonIcon variation="secondary">
           <HiMiniMoon size={22} />
         </ButtonIcon>
