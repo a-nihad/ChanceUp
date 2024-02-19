@@ -24,7 +24,7 @@ function Header() {
             </ButtonIcon>
           </Modal.Open>
 
-          <Modal.Window name="next_week" className='hidden' >
+          <Modal.Window name="next_week" >
             <WeekCount />
           </Modal.Window>
         </Modal>

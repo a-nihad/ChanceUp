@@ -50,3 +50,18 @@ export async function deleteMember(id) {
     throw new Error("Members could not be deleted");
   }
 }
+
+export async function getMember(id) {
+  const { data, error } = await supabase
+    .from("members")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Member could not be loaded");
+  }
+
+  return data;
+}

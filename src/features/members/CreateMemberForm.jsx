@@ -28,8 +28,6 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
 
   function onSubmit(data) {
     data.instalment = !data.instalment ? 0 : data.instalment;
-    data.amount = data.lot * perLotPrice;
-    data.pending = currentInstalment - data.instalment;
     data.lotCount = !data.lotCount ? data.lot : data.lotCount;
     data.status = !data.status ? "waiting" : data.status;
 

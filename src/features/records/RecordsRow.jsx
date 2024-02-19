@@ -1,19 +1,25 @@
 import { MdModeEdit } from "react-icons/md";
 import { HiTrash, HiMinusCircle, HiCheckCircle } from "react-icons/hi2";
+import { GiReceiveMoney } from "react-icons/gi";
 import Menu from "../../ui/Menu";
 import Modal from "../../ui/Modal";
 import CreateMemberForm from "../members/CreateMemberForm";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useDeleteMember } from "../members/useDeleteMember";
+import { useSettings } from "../settings/useSettings";
+import InstalmentCollection from "../members/InstalmentCollection";
 
 function RecordsRow({ member, index }) {
-  const { name, lot, amount, instalment, status, pending, lotCount, id } =
-    member;
-
+  const { name, lot, instalment, status, lotCount, id } = member;
   const { deleteMember } = useDeleteMember();
+  const { settings: { perLotPrice, currentInstalment } = {}, isLoading } =
+    useSettings();
+
+  const pending = currentInstalment - instalment;
+  const amount = lot * perLotPrice;
 
   return (
-    <div className="hover:bg-color_grey_light grid grid-cols-[40px_1.8fr_1fr_1fr_1fr_28px] items-center px-4 py-3 text-center text-sm text-color_text hover:text-color_primary md:grid-cols-[40px_1.8fr_1fr_1fr_1fr_1fr_1fr_28px] lg:grid-cols-[40px_1.8fr_1fr_1fr_1fr_1fr_1fr_1fr_28px]">
+    <div className="grid grid-cols-[40px_1.8fr_1fr_1fr_1fr_28px] items-center px-4 py-3 text-center text-sm text-color_text hover:bg-color_grey_light hover:text-color_primary md:grid-cols-[40px_1.8fr_1fr_1fr_1fr_1fr_1fr_28px] lg:grid-cols-[40px_1.8fr_1fr_1fr_1fr_1fr_1fr_1fr_28px]">
       <div className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-300">
         {index + 1}
       </div>
@@ -54,28 +60,15 @@ function RecordsRow({ member, index }) {
           <Menu.Toggle id={id} />
 
           <Menu.List id={id}>
-            <Modal.Open windowName="edit">
+            <Modal.Open windowName="collection" >
               <Menu.Button>
-                <MdModeEdit size={20} /> Edit
-              </Menu.Button>
-            </Modal.Open>
-
-            <Modal.Open windowName="delete">
-              <Menu.Button>
-                <HiTrash size={20} /> Delete
+                <GiReceiveMoney size={20} /> Collection
               </Menu.Button>
             </Modal.Open>
           </Menu.List>
 
-          <Modal.Window name="edit">
-            <CreateMemberForm memberToEdit={member} />
-          </Modal.Window>
-
-          <Modal.Window name="delete">
-            <ConfirmDelete
-              resourceName="Member"
-              onConfirm={() => deleteMember(id)}
-            />
+          <Modal.Window name="collection" >
+            <InstalmentCollection id={id} />
           </Modal.Window>
         </Modal>
       </Menu>

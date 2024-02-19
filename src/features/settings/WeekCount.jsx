@@ -1,6 +1,8 @@
+import { format } from "date-fns";
 import Buttion from "../../ui/Buttion";
 import { useEditSettings } from "./useEditSettings";
 import { useSettings } from "./useSettings";
+import { HiCalendarDays } from "react-icons/hi2";
 
 function WeekCount({ onClose }) {
   const { settings } = useSettings();
@@ -15,22 +17,28 @@ function WeekCount({ onClose }) {
   }
 
   return (
-    <div className=" w-max space-y-8 rounded-lg border bg-white p-5 text-center shadow-lg sm:p-8">
-      <h1 className="text-lg font-semibold md:text-xl">
+    <div className=" flex w-max flex-col items-center gap-2 rounded-lg border bg-white p-8 shadow-lg ">
+      <p className="text-color_text">
+        <HiCalendarDays size={30} />
+      </p>
+      <h1 className="font-semibold ">
         Current Week :-
-        <span className="text-color_primary">
+        <span className="px-1 text-color_primary">
           {settings?.currentInstalment}
         </span>
       </h1>
 
-      <div className="flex justify-end gap-3">
-        <Buttion variation="secondary" onClick={onClose}>
-          Cancel
-        </Buttion>
-        <Buttion variation="danger" onClick={handleClick}>
-          Next Week
-        </Buttion>
-      </div>
+      <span className="text-sm text-color_primary">
+        {format(new Date(), "LLLL dd - yyyy, EEEE")}
+      </span>
+
+      <Buttion
+        variation="primary"
+        className="mt-3 w-[250px]"
+        onClick={handleClick}
+      >
+        Next Week
+      </Buttion>
     </div>
   );
 }
