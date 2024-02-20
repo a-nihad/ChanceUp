@@ -11,9 +11,7 @@ export function useMembers() {
   const filter =
     !filterValue || filterValue === "all"
       ? null
-      : filterValue === "pending"
-        ? { field: "pending", value: 0, method: "gt" }
-        : { field: "status", value: filterValue };
+      : { field: "status", value: filterValue };
 
   // Sorting;
   const sortValue = searchParams.get("sortBy") || "name-asc";
@@ -32,13 +30,20 @@ export function useMembers() {
     ? data || {}
     : data.filter((value) => value.name.toLowerCase().includes(search));
 
-  const dataCount = searched.length;
+  // Pending
+  const pending = Number(searchParams.get("pending"));
+  const pendingValue = pending
+    ? searched.filter((value) => pending - value.instalment > 0)
+    : searched || {};
+
+  const dataCount = pendingValue.length;
 
   // Pagination
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
   const from = (page - 1) * PAGE_SIZE;
   const to = page * PAGE_SIZE;
-  const members = searched.length > 1 ? searched.slice(from, to) : searched;
+  const members =
+    pendingValue.length > 1 ? pendingValue.slice(from, to) : pendingValue;
 
   return { members, isLoading, error, dataCount };
 }

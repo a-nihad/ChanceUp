@@ -1,12 +1,13 @@
-import {
-  HiArrowRightOnRectangle,
-  HiMiniMoon,
-  HiCalendarDays,
-} from "react-icons/hi2";
+import { HiCalendarDays } from "react-icons/hi2";
+import { GiReceiveMoney } from "react-icons/gi";
+
+import { FaGift } from "react-icons/fa6";
 import { useLocation } from "react-router-dom";
 import ButtonIcon from "./ButtonIcon";
 import Modal from "./Modal";
 import WeekCount from "../features/settings/WeekCount";
+import WeeklyWinner from "../features/records/WeeklyWinner";
+import Collection from "../features/records/Collection";
 
 function Header() {
   const { pathname } = useLocation();
@@ -24,18 +25,30 @@ function Header() {
             </ButtonIcon>
           </Modal.Open>
 
-          <Modal.Window name="next_week" >
+          <Modal.Open windowName="winner">
+            <ButtonIcon>
+              <FaGift size={20} />
+            </ButtonIcon>
+          </Modal.Open>
+
+          <Modal.Open windowName="collection">
+            <ButtonIcon>
+              <GiReceiveMoney size={22} />
+            </ButtonIcon>
+          </Modal.Open>
+
+          <Modal.Window name="next_week">
             <WeekCount />
           </Modal.Window>
+
+          <Modal.Window name="winner">
+            <WeeklyWinner />
+          </Modal.Window>
+
+          <Modal.Window name="collection">
+            <Collection />
+          </Modal.Window>
         </Modal>
-
-        <ButtonIcon variation="secondary">
-          <HiMiniMoon size={22} />
-        </ButtonIcon>
-
-        <ButtonIcon variation="secondary">
-          <HiArrowRightOnRectangle size={22} />{" "}
-        </ButtonIcon>
       </div>
     </div>
   );

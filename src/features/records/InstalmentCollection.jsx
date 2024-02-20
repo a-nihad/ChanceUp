@@ -1,10 +1,10 @@
 import { format } from "date-fns";
 import { GiReceiveMoney } from "react-icons/gi";
 import { useSettings } from "../settings/useSettings";
-import { useMember } from "./useMember";
+import { useMember } from "../members/useMember";
 import Loader from "../../ui/Loader";
 import Buttion from "../../ui/Buttion";
-import { useEditMember } from "./useEditMember";
+import { useEditMember } from "../members/useEditMember";
 
 function InstalmentCollection({ id, onClose }) {
   const { isLoading, member } = useMember(id);
@@ -29,7 +29,7 @@ function InstalmentCollection({ id, onClose }) {
   }
 
   return (
-    <div className="flex w-max flex-col items-center gap-2 rounded-lg border bg-white p-8 shadow-lg ">
+    <div className="flex w-max flex-col items-center gap-2 rounded-lg ">
       <span className="text-color_text">
         <GiReceiveMoney size={30} />
       </span>
@@ -39,8 +39,9 @@ function InstalmentCollection({ id, onClose }) {
           {member.name}'s Lot is
           <span className="font-bold"> {member.lot} </span>
         </p>
+        <p> Current instalment :- {member.instalment + 1} </p>
         <p>
-          and Payment amount :-
+          Payment amount :-
           <span className="font-bold text-color_red">
             {member.lot * settings.perLotPrice}
           </span>

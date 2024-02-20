@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { useSearchParams } from "react-router-dom";
 

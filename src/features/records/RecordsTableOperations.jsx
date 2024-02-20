@@ -1,12 +1,14 @@
 import { FaFilter, FaSortAlphaDownAlt } from "react-icons/fa";
 import Operations from "../../ui/Operations";
 import SearchBar from "../../ui/SearchBar";
+import Pendings from "./Pendings";
 
 function RecordsTableOperations() {
   return (
     <div className="flex items-center justify-between gap-5 ">
       <SearchBar />
       <div className="flex gap-2">
+        <Pendings />
         <Operations
           defaultValue="Filter"
           filterField="status"
@@ -14,7 +16,7 @@ function RecordsTableOperations() {
             { value: "all", label: "All" },
             { value: "done", label: "Done" },
             { value: "waiting", label: "Waiting" },
-            { value: "pending", label: "Pending" },
+            { value: "holding", label: "Holding" },
           ]}
           icon={<FaFilter />}
         />

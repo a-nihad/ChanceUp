@@ -1,17 +1,12 @@
-import { MdModeEdit } from "react-icons/md";
-import { HiTrash, HiMinusCircle, HiCheckCircle } from "react-icons/hi2";
+import { HiMinusCircle, HiCheckCircle } from "react-icons/hi2";
 import { GiReceiveMoney } from "react-icons/gi";
 import Menu from "../../ui/Menu";
 import Modal from "../../ui/Modal";
-import CreateMemberForm from "../members/CreateMemberForm";
-import ConfirmDelete from "../../ui/ConfirmDelete";
-import { useDeleteMember } from "../members/useDeleteMember";
 import { useSettings } from "../settings/useSettings";
-import InstalmentCollection from "../members/InstalmentCollection";
+import Collection from "./Collection";
 
 function RecordsRow({ member, index }) {
   const { name, lot, instalment, status, lotCount, id } = member;
-  const { deleteMember } = useDeleteMember();
   const { settings: { perLotPrice, currentInstalment } = {}, isLoading } =
     useSettings();
 
@@ -68,7 +63,7 @@ function RecordsRow({ member, index }) {
           </Menu.List>
 
           <Modal.Window name="collection" >
-            <InstalmentCollection id={id} />
+            <Collection id={id} />
           </Modal.Window>
         </Modal>
       </Menu>
