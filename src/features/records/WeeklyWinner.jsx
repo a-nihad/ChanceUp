@@ -1,6 +1,6 @@
 import { useState } from "react";
-import SearchMembers from "../../ui/SearchMembers";
 import { useMembers } from "../members/useMembers";
+import SearchMembers from "../../ui/SearchMembers";
 import Loader from "../../ui/Loader";
 import Winner from "./Winner";
 
@@ -13,7 +13,7 @@ function WeeklyWinner({ onClose }) {
   const remainingMembres = members.filter((member) => member.status !== "done");
 
   return (
-    <div className="flex w-max flex-col items-center gap-2 rounded-lg border bg-color_light p-8 pt-12 shadow-lg">
+    <div className="flex w-max flex-col items-center gap-2 rounded-lg border bg-color_light p-8 shadow-lg">
       {!memberId ? (
         <SearchMembers onMemberId={setMemberId} members={remainingMembres} />
       ) : (

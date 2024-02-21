@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getMembers } from "../../services/apiMembers";
 import { useSearchParams } from "react-router-dom";
-import { PAGE_SIZE } from "../../ui/Pagination";
 
 export function useMembers() {
   const [searchParams] = useSearchParams();
@@ -39,6 +38,7 @@ export function useMembers() {
   const dataCount = pendingValue.length;
 
   // Pagination
+  const PAGE_SIZE = searchParams.get("pageSize") || 15;
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
   const from = (page - 1) * PAGE_SIZE;
   const to = page * PAGE_SIZE;

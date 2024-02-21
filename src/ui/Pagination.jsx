@@ -1,12 +1,11 @@
 import { useSearchParams } from "react-router-dom";
-import ButtonIcon from "./ButtonIcon";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
-
-export const PAGE_SIZE = 9;
+import ButtonIcon from "./ButtonIcon";
 
 function Pagination({ count }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const PAGE_SIZE = searchParams.get("pageSize");
   const currentPage = !searchParams.get("page")
     ? 1
     : Number(searchParams.get("page"));
@@ -27,7 +26,7 @@ function Pagination({ count }) {
   if (pageCount <= 1) return null;
 
   return (
-    <div className="flex items-center rounded-b-lg bg-white p-3 md:justify-between md:px-10 ">
+    <div className="flex items-center rounded-b-2xl bg-white p-3 md:justify-between md:px-10 ">
       <p className="hidden w-96 text-color_text md:block ">
         Showing
         <span className="font-bold"> {(currentPage - 1) * PAGE_SIZE + 1} </span>

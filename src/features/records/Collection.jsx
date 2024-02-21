@@ -1,8 +1,8 @@
 import { useState } from "react";
-import SearchMembers from "../../ui/SearchMembers";
 import { useMembers } from "../members/useMembers";
-import Loader from "../../ui/Loader";
 import InstalmentCollection from "./InstalmentCollection";
+import SearchMembers from "../../ui/SearchMembers";
+import Loader from "../../ui/Loader";
 
 function Collection({ onClose, id }) {
   const [memberId, setMemberId] = useState(id);
@@ -11,7 +11,7 @@ function Collection({ onClose, id }) {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="flex w-max flex-col items-center gap-2 rounded-lg border bg-color_light p-8 pt-12 shadow-lg">
+    <div className="flex w-max flex-col items-center gap-2 rounded-lg border bg-color_light p-8 shadow-lg">
       {!memberId ? (
         <SearchMembers onMemberId={setMemberId} members={members} />
       ) : (

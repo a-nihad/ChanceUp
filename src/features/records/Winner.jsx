@@ -1,10 +1,9 @@
 import { format } from "date-fns";
-import Loader from "../../ui/Loader";
 import { useEditMember } from "../members/useEditMember";
-import { useMember } from "../members/useMember";
-import { FaGift } from "react-icons/fa6";
-import Buttion from "../../ui/Buttion";
 import { useSettings } from "../settings/useSettings";
+import { useMember } from "../members/useMember";
+import Buttion from "../../ui/Buttion";
+import Loader from "../../ui/Loader";
 
 function Winner({ id, onClose }) {
   const { isLoading, member } = useMember(id);
@@ -32,9 +31,11 @@ function Winner({ id, onClose }) {
   }
   return (
     <>
-      <span className="text-color_text">
-        <FaGift size={30} />
-      </span>
+      <img
+        className="h-20 w-20 rounded-full object-cover object-center outline outline-2 outline-offset-2 outline-color_grey"
+        src={member.image}
+        alt="img"
+      />
       <h1 className="font-bold capitalize"> {member.name} </h1>
       <div className="flex flex-col items-center rounded-lg text-sm text-color_text">
         <p>
@@ -65,7 +66,7 @@ function Winner({ id, onClose }) {
         Week {settings.currentInstalment} Winner
       </Buttion>
 
-      <span className="text-sm text-color_primary">
+      <span className="text-xs text-color_primary">
         {format(new Date(), "LLLL dd - yyyy, EEEE")}
       </span>
     </>

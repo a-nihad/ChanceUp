@@ -1,18 +1,15 @@
 import { format } from "date-fns";
-import { GiReceiveMoney } from "react-icons/gi";
+import { useEditMember } from "../members/useEditMember";
 import { useSettings } from "../settings/useSettings";
 import { useMember } from "../members/useMember";
-import Loader from "../../ui/Loader";
 import Buttion from "../../ui/Buttion";
-import { useEditMember } from "../members/useEditMember";
+import Loader from "../../ui/Loader";
 
 function InstalmentCollection({ id, onClose }) {
   const { isLoading, member } = useMember(id);
   const { settings, isLoading: settingsLoading } = useSettings();
   const { editMember } = useEditMember();
   if (isLoading || settingsLoading) return <Loader />;
-
-  console.log(member);
 
   function handleClick() {
     editMember(
@@ -30,9 +27,11 @@ function InstalmentCollection({ id, onClose }) {
 
   return (
     <div className="flex w-max flex-col items-center gap-2 rounded-lg ">
-      <span className="text-color_text">
-        <GiReceiveMoney size={30} />
-      </span>
+      <img
+        className="h-20 w-20 rounded-full object-cover object-center outline outline-2 outline-offset-2 outline-color_grey"
+        src={member.image}
+        alt="img"
+      />
       <h1 className="font-bold capitalize"> {member.name}</h1>
       <div className="flex flex-col items-center rounded-lg text-sm text-color_text">
         <p>

@@ -3,7 +3,7 @@ import RecordsTableOperations from "../features/records/RecordsTableOperations";
 
 function Records() {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="grid grid-rows-[auto_1fr] gap-y-3">
       <RecordsTableOperations />
       <RecordsTable />
     </div>

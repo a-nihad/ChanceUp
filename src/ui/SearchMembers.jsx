@@ -1,34 +1,46 @@
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { IoArrowUndoSharp } from "react-icons/io5";
 import SearchBar from "./SearchBar";
-import { FaUser } from "react-icons/fa";
 
 function SearchMembers({ onMemberId, members }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const search = searchParams.get("search") || "";
+  useEffect(() => {
+    searchParams.set("pageSize", 7);
+    setSearchParams(searchParams);
+  }, []);
 
   function handleClick(id) {
     onMemberId(id);
     searchParams.set("search", "");
+    searchParams.set("pageSize", 15);
     setSearchParams(searchParams);
   }
   return (
     <>
-      <SearchBar />
-      {search && (
-        <div className="flex w-full flex-col justify-start rounded-xl border bg-white p-2 ">
-          {members.map((member) => (
-            <button
-              key={member.id}
-              className="flex items-center gap-2 rounded-lg p-1 px-2 capitalize text-color_text hover:bg-color_grey_light hover:text-color_primary"
-              onClick={() => handleClick(member.id)}
-            >
-              <FaUser />
+      <SearchBar className="md:[w-350px] w-[170px] sm:w-[220px] " />
+
+      <div className="rounded-x flex w-full flex-col justify-start gap-2 ">
+        {members.map((member) => (
+          <button
+            key={member.id}
+            className="flex items-center justify-between gap-4 rounded-lg bg-white  p-2 px-4 capitalize text-color_text hover:bg-color_grey_light hover:text-color_primary"
+            onClick={() => handleClick(member.id)}
+          >
+            <div className="flex items-center gap-4">
+              <img
+                className="h-8 w-8 rounded-full object-cover object-center outline outline-2 outline-offset-2 outline-color_grey hover:outline-color_primary"
+                src={member.image}
+                alt="profile-pic"
+              />
               {member.name}
-            </button>
-          ))}
-        </div>
-      )}
+            </div>
+
+            <IoArrowUndoSharp />
+          </button>
+        ))}
+      </div>
     </>
   );
 }

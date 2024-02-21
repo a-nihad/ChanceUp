@@ -2,14 +2,11 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useCreateMember } from "./useCreateMember";
 import { useEditMember } from "./useEditMember";
-import { useSettings } from "../settings/useSettings";
 import Buttion from "../../ui/Buttion";
 import FormRow from "../../ui/form/FormRow";
 import FormInput from "../../ui/form/FormInput";
 
 function CreateMemberForm({ memberToEdit = {}, onClose }) {
-  const { settings: { perLotPrice, currentInstalment } = {} } = useSettings();
-
   const { id: memberId, ...editValue } = memberToEdit;
   const isEditSession = Boolean(memberId);
 
@@ -31,9 +28,13 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
     data.lotCount = !data.lotCount ? data.lot : data.lotCount;
     data.status = !data.status ? "waiting" : data.status;
 
+    const imageType =
+      typeof data.image === "string" ? data.image : data.image[0];
+    const image = imageType === undefined ? "default-user.jpg" : imageType;
+
     if (isEditSession)
       editMember(
-        { newMember: data, id: memberId },
+        { newMember: { ...data, image }, id: memberId },
         {
           onSuccess: () => {
             reset(), onClose?.();
@@ -41,11 +42,14 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
         },
       );
     else
-      createMember(data, {
-        onSuccess: () => {
-          reset(), onClose?.();
+      createMember(
+        { ...data, image },
+        {
+          onSuccess: () => {
+            reset(), onClose?.();
+          },
         },
-      });
+      );
   }
 
   return (
@@ -120,6 +124,15 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
                 placeholder="Lots"
               />
             </FormRow>
+
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              className=" col-span-2 p-2 text-color_text file:cursor-pointer file:rounded-lg file:border-none file:bg-color_grey file:px-4 file:py-2 "
+              placeholder="Chose Profile pic"
+              {...register("image")}
+            />
 
             <div className="col-span-2 flex justify-end space-x-4 px-2 py-4">
               <Buttion onClick={onClose} variation="secondary" type="reset">

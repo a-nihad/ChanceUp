@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { useSearchParams } from "react-router-dom";
+import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 
-function SearchBar() {
+function SearchBar({className}) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleChange = (value) => {
@@ -17,7 +16,7 @@ function SearchBar() {
       <input
         type="text"
         placeholder="Search here..."
-        className="w-[100px] outline-none sm:w-full"
+        className={`w-[100px] outline-none sm:w-full ${className} `}
         onChange={(e) => handleChange(e.target.value)}
       />
     </div>

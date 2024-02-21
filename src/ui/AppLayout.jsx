@@ -6,9 +6,9 @@ function AppLayout() {
   return (
     <>
       <Sidebar />
-      <main className="relative min-h-screen bg-color_light pb-5 sm:ml-20 lg:ml-64 ">
+      <main className="min-h-screen bg-color_light sm:ml-20 lg:ml-64 ">
         <Header />
-        <div className="px-5 lg:px-10">
+        <div className="px-5 pb-5 lg:px-10">
           <Outlet />
         </div>
       </main>
