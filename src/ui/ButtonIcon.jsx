@@ -4,7 +4,7 @@ function ButtonIcon({ onClick, children, variation, disabled, className }) {
   const secondary =
     "text-color_grey hover:bg-color_grey border hover:text-color_white border-color_grey ";
   const special_Primary =
-    "text-color_text border hover:text-color_primary hover:border-color_primary ";
+    "text-color_text border border-color_grey_light hover:text-color_primary hover:border-color_primary ";
 
   return (
     <button

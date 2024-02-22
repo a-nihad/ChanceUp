@@ -4,11 +4,13 @@ import { useSettings } from "../settings/useSettings";
 import { useMember } from "../members/useMember";
 import Buttion from "../../ui/Buttion";
 import Loader from "../../ui/Loader";
+import { useEditSettings } from "../settings/useEditSettings";
 
 function Winner({ id, onClose }) {
   const { isLoading, member } = useMember(id);
   const { editMember } = useEditMember();
   const { settings, isLoading: settingsLoading } = useSettings();
+  const { editSettings } = useEditSettings();
 
   if (isLoading || settingsLoading) return <Loader />;
 
@@ -28,6 +30,10 @@ function Winner({ id, onClose }) {
         },
       },
     );
+    editSettings({
+      ...settings,
+      winner: member.name,
+    });
   }
   return (
     <>

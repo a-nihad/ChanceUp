@@ -17,6 +17,8 @@ export default {
         color_green: "#15803d",
         color_blue_light: "#e0f2fe",
         color_blue: "#0369a1",
+        color_indigo_light: "#e0e7ff",
+        color_indigo: "#4338ca",
         color_white: "#fafafa",
         color_grey: "#d1d5db",
         color_grey_light: "#f3f4f6",

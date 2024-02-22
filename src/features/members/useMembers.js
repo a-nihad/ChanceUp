@@ -23,6 +23,8 @@ export function useMembers() {
     queryFn: () => getMembers({ filter, sortBy }),
   });
 
+  const allMembers = data;
+
   // Searching
   const search = searchParams.get("search");
   const searched = !search
@@ -45,5 +47,5 @@ export function useMembers() {
   const members =
     pendingValue.length > 1 ? pendingValue.slice(from, to) : pendingValue;
 
-  return { members, isLoading, error, dataCount };
+  return { members, isLoading, error, dataCount, allMembers };
 }

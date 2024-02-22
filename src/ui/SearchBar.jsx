@@ -11,7 +11,7 @@ function SearchBar({className}) {
   };
 
   return (
-    <div className="flex grow items-center gap-2 rounded-full border bg-white px-4 py-2 text-color_text sm:max-w-96 ">
+    <div className="flex grow items-center gap-2 rounded-full border border-color_grey_light bg-white px-4 py-2 text-color_text sm:max-w-96 ">
       <HiMiniMagnifyingGlass size={20} />
       <input
         type="text"

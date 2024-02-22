@@ -20,7 +20,7 @@ function Operations({ filterField, options, defaultValue, icon }) {
   return (
     <div ref={ref} className="relative">
       <button
-        className=" flex cursor-pointer items-center justify-between rounded-full border bg-white p-3 text-color_text hover:border-color_primary hover:text-color_primary md:w-32 md:px-4 md:py-2 lg:w-44"
+        className=" flex cursor-pointer items-center justify-between rounded-full border border-color_grey_light bg-white p-3 text-color_text hover:border-color_primary hover:text-color_primary md:w-32 md:px-4 md:py-2 lg:w-44"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className={`hidden capitalize md:block lg:hidden `}>
@@ -31,7 +31,7 @@ function Operations({ filterField, options, defaultValue, icon }) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 z-30 mt-1 flex w-36 flex-col divide-y rounded-xl border bg-white p-3 shadow-lg sm:left-0">
+        <div className="absolute right-0 z-30 mt-1 flex w-36 flex-col divide-y rounded-xl border border-color_grey_light bg-white p-3 shadow-lg sm:left-0">
           {options.map((option) => {
             return (
               <button
