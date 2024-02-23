@@ -1,10 +1,11 @@
 function StatusBox({ icon, title, value, color, side }) {
+  console.log(color);
   return (
     <div
-      className={`flex ${side === "right" ? "flex-row-reverse md:flex-row" : ""}  items-center gap-2 rounded-xl sm:gap-4 bg-color_${color}_light p-3`}
+      className={`flex ${side === "right" ? "flex-row-reverse md:flex-row" : ""}  items-center gap-2 rounded-xl p-3  sm:gap-4 ${color === "indigo" ? "bg-color_indigo_light" : color === "red" ? "bg-color_red_light" : `bg-color_${color}_light`} `}
     >
       <h1
-        className={`row-span-full flex aspect-square items-center justify-center rounded-full bg-white p-2 text-2xl sm:p-3 sm:text-3xl text-color_${color}`}
+        className={`row-span-full flex aspect-square items-center justify-center rounded-full bg-white p-2 text-2xl sm:p-3 sm:text-3xl ${color === "indigo" ? "text-color_indigo" : `text-color_${color}`} `}
       >
         {icon}
       </h1>

@@ -8,7 +8,6 @@ export function useEditMember() {
   const { mutate: editMember } = useMutation({
     mutationFn: ({ newMember, id }) => createEditMember(newMember, id),
     onSuccess: () => {
-      toast.success("Member successfully edited");
       queryClient.invalidateQueries({
         queryKey: ["member"],
       });

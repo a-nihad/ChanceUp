@@ -8,6 +8,7 @@ import Profile from "../pages/Profile";
 import Login from "../pages/Login";
 import PageNotFound from "../pages/PageNotFound";
 import AppLayout from "../ui/AppLayout";
+import Transactions from "../pages/Transactions";
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="members" element={<Members />} />
         <Route path="records" element={<Records />} />
+        <Route path="transactions" element={<Transactions />} />
         <Route path="installments" element={<Installments />} />
         <Route path="settings" element={<Settings />} />
         <Route path="profile" element={<Profile />} />

@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { useCreatetransaction } from "../transactions/useCreatetransaction";
 import { useEditMember } from "../members/useEditMember";
 import { useSettings } from "../settings/useSettings";
 import { useMember } from "../members/useMember";
@@ -9,6 +10,7 @@ function InstalmentCollection({ id, onClose }) {
   const { isLoading, member } = useMember(id);
   const { settings, isLoading: settingsLoading } = useSettings();
   const { editMember } = useEditMember();
+  const { createTransaction } = useCreatetransaction();
   if (isLoading || settingsLoading) return <Loader />;
 
   function handleClick() {
@@ -23,6 +25,11 @@ function InstalmentCollection({ id, onClose }) {
         },
       },
     );
+    createTransaction({
+      payment_type: "credit",
+      instalment_count: member.instalment + 1,
+      member_id: member.id,
+    });
   }
 
   return (

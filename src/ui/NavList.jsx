@@ -56,6 +56,11 @@ const navigateList = [
     icon: <hi2Icons.HiIdentification />,
   },
   {
+    title: "Transactions",
+    path: "/transactions",
+    icon: <hi2Icons.HiNewspaper />,
+  },
+  {
     title: "Settings",
     path: "/settings",
     icon: <hi2Icons.HiCog6Tooth />,
