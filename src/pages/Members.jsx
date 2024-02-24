@@ -3,7 +3,7 @@ import MembersTableOperations from "../features/members/MembersTableOperations";
 
 function Members() {
   return (
-    <div className="grid grid-rows-[auto_1fr] gap-y-3">
+    <div className="grid grid-rows-[auto_1fr] gap-y-1">
       <MembersTableOperations />
       <MembersTable />
     </div>

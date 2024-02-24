@@ -3,7 +3,7 @@ import TransactionTable from "../features/transactions/TransactionTable";
 
 function Transactions() {
   return (
-    <div className="grid grid-rows-[auto_1fr] gap-y-3">
+    <div className="grid grid-rows-[auto_1fr] gap-y-1">
       <TransactionTableOperations />
       <TransactionTable />
     </div>

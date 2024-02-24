@@ -1,16 +1,18 @@
 import { format } from "date-fns";
+import { useCreatetransaction } from "../transactions/useCreatetransaction";
+import { useEditSettings } from "../settings/useEditSettings";
 import { useEditMember } from "../members/useEditMember";
 import { useSettings } from "../settings/useSettings";
 import { useMember } from "../members/useMember";
 import Buttion from "../../ui/Buttion";
 import Loader from "../../ui/Loader";
-import { useEditSettings } from "../settings/useEditSettings";
 
 function Winner({ id, onClose }) {
   const { isLoading, member } = useMember(id);
   const { editMember } = useEditMember();
   const { settings, isLoading: settingsLoading } = useSettings();
   const { editSettings } = useEditSettings();
+  const { createTransaction } = useCreatetransaction();
 
   if (isLoading || settingsLoading) return <Loader />;
 
@@ -33,6 +35,11 @@ function Winner({ id, onClose }) {
     editSettings({
       ...settings,
       winner: member.name,
+    });
+    createTransaction({
+      payment_type: "debit",
+      instalment_count: settings.currentInstalment,
+      member_id: member.id,
     });
   }
   return (

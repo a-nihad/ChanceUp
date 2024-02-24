@@ -15,12 +15,12 @@ function MembersRow({ member }) {
   const { deleteMember } = useDeleteMember();
 
   return (
-    <div className="grid grid-cols-[1fr_28px] px-4 text-color_text hover:bg-color_grey_light hover:text-color_primary">
+    <div className="grid grid-cols-[1fr_28px] rounded-lg border border-color_grey_light bg-white px-4 text-color_text hover:bg-color_grey_light hover:text-color_primary">
       <Modal>
         <Modal.Open windowName="details">
-          <div className="grid grid-cols-[45px_2fr_1fr_0.7fr] items-center py-3 text-sm  md:grid-cols-[45px_1.5fr_1.8fr_1fr_1.2fr] lg:grid-cols-[45px_1.5fr_1.8fr_1.2fr_1.2fr_1.8fr]">
+          <div className="grid grid-cols-[45px_2fr_1fr_0.7fr] items-center py-2 text-sm  md:grid-cols-[45px_1.5fr_1.8fr_1fr_1.2fr] lg:grid-cols-[45px_1.5fr_1.8fr_1.2fr_1.2fr_1.8fr]">
             <img
-              className="h-8 w-8 rounded-full object-cover object-center outline outline-2 outline-offset-2 outline-color_grey"
+              className="h-9 w-9 rounded-full object-cover object-center"
               src={image}
               alt="profile-pic"
             />

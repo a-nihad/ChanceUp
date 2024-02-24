@@ -1,5 +1,4 @@
 function StatusBox({ icon, title, value, color, side }) {
-  console.log(color);
   return (
     <div
       className={`flex ${side === "right" ? "flex-row-reverse md:flex-row" : ""}  items-center gap-2 rounded-xl p-3  sm:gap-4 ${color === "indigo" ? "bg-color_indigo_light" : color === "red" ? "bg-color_red_light" : `bg-color_${color}_light`} `}

@@ -18,8 +18,8 @@ function RecordsTable() {
 
   return (
     <>
-      <div className="space-y-1 rounded-lg border">
-        <header className="sticky top-16 hidden grid-cols-[45px_1.8fr_1fr_1fr_1fr_28px] rounded-t-lg bg-color_primary px-4  py-2 text-center text-sm font-semibold text-color_light sm:grid md:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr_28px] lg:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr_1fr_28px]">
+      <div className="space-y-1 rounded-lg">
+        <header className="sticky top-16 hidden grid-cols-[45px_1.8fr_1fr_1fr_1fr_28px] rounded-lg bg-color_primary px-4  py-3 text-center text-sm font-semibold text-color_light sm:grid md:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr_28px] lg:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr_1fr_28px]">
           <h1></h1>
           <h1 className="text-left">Name</h1>
           <h1 className="hidden md:block">Lots</h1>
@@ -31,11 +31,11 @@ function RecordsTable() {
           <div></div>
         </header>
 
-        <div className="divide-y-4 divide-color_light  bg-white  ">
-          {members.map((member, index) => (
-            <RecordsRow key={member.id} member={member} index={index} />
-          ))}
-        </div>
+        {members.map((member) => (
+          <div key={member.id}>
+            <RecordsRow member={member} />
+          </div>
+        ))}
 
         <Pagination count={dataCount} />
       </div>

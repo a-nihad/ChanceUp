@@ -8,23 +8,41 @@ function TransactionRow({ transaction, settings }) {
     created_at,
   } = transaction;
 
-  const date = format(created_at, "dd-LL-yyyy, EEEE");
+  const date = format(created_at, "dd-LL-yyyy");
+  const time = format(created_at, "p");
 
   return (
-    <div className="grid grid-cols-[1fr_2.2fr_1fr_1.3fr_1fr] items-center px-4 py-3 text-sm text-color_text hover:bg-color_grey_light hover:text-color_primary  md:grid-cols-[1fr_2.2fr_1fr_1.3fr_1fr] lg:grid-cols-[1fr_2.2fr_1fr_1.3fr_1fr]">
-      <h1 className=""> {payment_type} </h1>
+    <div className="grid grid-cols-[3fr_.8fr_.8fr] items-center rounded-lg border border-color_grey_light bg-white px-2 py-2 text-sm capitalize text-color_text hover:bg-color_grey_light hover:text-color_primary sm:px-4 md:grid-cols-[1.3fr_1fr_1fr_1fr] lg:grid-cols-[1.2fr_1.5fr_1fr_1fr_1fr]">
+      <div className="hidden gap-x-1 text-right md:text-left lg:flex lg:flex-row">
+        {date}
+        <span className=" justify-end  md:justify-start  ">{time}</span>
+      </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 ">
         <img
-          className="h-8 w-8 rounded-full border border-color_grey_light object-cover object-center "
+          className="h-9 w-9 rounded-full border border-color_grey_light object-cover object-center "
           src={image}
           alt="profile-pic"
         />
-        <h1 className="">{name}</h1>
+        <div>
+          <h1 className="font-semibold">{name}</h1>
+          <div className="flex gap-x-1 text-right text-xs md:text-left lg:hidden lg:flex-row">
+            {date}
+            <span className=" justify-end  md:justify-start  ">{time}</span>
+          </div>
+        </div>
       </div>
-      <h1 className=""> {instalment_count} </h1>
-      <h1 className=""> {date} </h1>
-      <h1 className=""> {lot * settings?.perLotPrice} </h1>
+      <h1 className="text-center font-semibold  ">
+        {instalment_count} {}
+      </h1>
+      <h1
+        className={`text-center  ${payment_type === "credit" ? "text-[#22c55e]" : "text-[#ef4444]"} `}
+      >
+        {payment_type === "credit"
+          ? lot * settings?.perLotPrice
+          : settings?.perLotPrice * settings?.totalInstallment}
+      </h1>
+      <h1 className=" hidden text-center md:block "> {payment_type} </h1>
     </div>
   );
 }

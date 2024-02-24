@@ -18,12 +18,12 @@ function RecordsRow({ member }) {
   const amount = lot * perLotPrice;
 
   return (
-    <div className="grid grid-cols-[1fr_28px] px-4 text-color_text hover:bg-color_grey_light hover:text-color_primary">
+    <div className="grid grid-cols-[1fr_28px] rounded-lg px-4 border border-color_grey_light bg-white  text-color_text hover:bg-color_grey_light hover:text-color_primary">
       <Modal>
         <Modal.Open windowName="details">
-          <div className="grid grid-cols-[45px_1.8fr_1fr_1fr_1fr] items-center py-3 text-center text-sm md:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr] lg:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr_1fr]">
+          <div className="grid grid-cols-[45px_1.8fr_1fr_1fr_1fr] items-center py-2 text-center text-sm md:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr] lg:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr_1fr]">
             <img
-              className="h-8 w-8 rounded-full object-cover object-center outline outline-2 outline-offset-2 outline-color_grey"
+              className="h-9 w-9 rounded-full object-cover object-center"
               src={image}
               alt="profile-pic"
             />
