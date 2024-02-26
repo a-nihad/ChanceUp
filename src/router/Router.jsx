@@ -1,19 +1,26 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import ProtectedRoute from "../ui/ProtectedRoute";
+import Installments from "../pages/Installments";
+import PageNotFound from "../pages/PageNotFound";
+import Transactions from "../pages/Transactions";
 import Dashboard from "../pages/Dashboard";
+import Settings from "../pages/Settings";
+import AppLayout from "../ui/AppLayout";
 import Members from "../pages/Members";
 import Records from "../pages/Records";
-import Installments from "../pages/Installments";
-import Settings from "../pages/Settings";
 import Profile from "../pages/Profile";
 import Login from "../pages/Login";
-import PageNotFound from "../pages/PageNotFound";
-import AppLayout from "../ui/AppLayout";
-import Transactions from "../pages/Transactions";
 
 function Router() {
   return (
     <Routes>
-      <Route element={<AppLayout />}>
+      <Route
+        element={
+          <ProtectedRoute>
+            <AppLayout />
+          </ProtectedRoute>
+        }
+      >
         <Route index element={<Navigate replace to="dashboard" />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="members" element={<Members />} />
