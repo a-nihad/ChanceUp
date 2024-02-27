@@ -11,7 +11,7 @@ export async function login({ email, password }) {
   return data;
 }
 
-export async function getCuttentUser() {
+export async function getAdmin() {
   const { data: session } = await supabase.auth.getSession();
   if (!session.session) return null;
 
@@ -23,4 +23,20 @@ export async function getCuttentUser() {
   if (error) throw new Error(error.message);
 
   return user;
+}
+
+export async function updateAdmin(password) {
+  const { data, error } = await supabase.auth.updateUser({
+    password,
+  });
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
+export async function logout() {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) throw new Error(error.message);
 }

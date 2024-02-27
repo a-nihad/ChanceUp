@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import * as hi2Icons from "react-icons/hi2";
-import * as haIcons from "react-icons/fa";
 
 function NavList({ sideBar, showSideBar }) {
   return (
@@ -41,11 +40,6 @@ const navigateList = [
     icon: <hi2Icons.HiHome />,
   },
   {
-    title: "Installments",
-    path: "/installments",
-    icon: <hi2Icons.HiMiniCheckCircle />,
-  },
-  {
     title: "Members",
     path: "/members",
     icon: <hi2Icons.HiUsers />,
@@ -61,13 +55,13 @@ const navigateList = [
     icon: <hi2Icons.HiNewspaper />,
   },
   {
+    title: "Installments",
+    path: "/installments",
+    icon: <hi2Icons.HiMiniCheckCircle />,
+  },
+  {
     title: "Settings",
     path: "/settings",
     icon: <hi2Icons.HiCog6Tooth />,
-  },
-  {
-    title: "Profile",
-    path: "/profile",
-    icon: <haIcons.FaUserTie />,
   },
 ];

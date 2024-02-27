@@ -25,42 +25,44 @@ function EditSettingsForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex max-w-[400px] flex-col gap-3 rounded-lg px-4 py-2 text-sm sm:px-8 sm:py-5 sm:text-base "
+      className="grid max-w-[800px] gap-y-3 p-2 px-5 pb-5 sm:grid-cols-2 sm:gap-x-8 lg:px-8 lg:pb-8 "
     >
-      <div className="flex items-center justify-between gap-5">
+      <div className="grid ">
         <Label id="totalInstallment"> Total Installment </Label>
         <Input
           type="number"
           id="totalInstallment"
           register={register}
           defaultValue={totalInstallment}
-          className="w-[150px]"
         />
       </div>
 
-      <div className="flex items-center justify-between gap-5">
+      <div className="grid ">
         <Label id="perLotPrice"> Lot Price </Label>
         <Input
           type="number"
           id="perLotPrice"
           register={register}
           defaultValue={perLotPrice}
-          className="w-[150px]"
         />
       </div>
 
-      <div className="flex items-center justify-between gap-5">
+      <div className="grid ">
         <Label id="currentInstalment"> Current Installment </Label>
         <Input
           type="number"
           id="currentInstalment"
           register={register}
           defaultValue={currentInstalment}
-          className="w-[150px]"
         />
       </div>
 
-      <Buttion className="mt-5">Update Setting</Buttion>
+      <div className="flex items-end justify-end gap-3">
+        <Buttion variation="secondary" className="h-max" type="reset">
+          Cancel
+        </Buttion>
+        <Buttion className="h-max">Update Setting</Buttion>
+      </div>
     </form>
   );
 }

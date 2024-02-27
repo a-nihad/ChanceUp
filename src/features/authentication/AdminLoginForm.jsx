@@ -10,7 +10,7 @@ import Label from "../../ui/Label";
 
 function AdminLoginForm() {
   const [email, setEmail] = useState("sulaimanalungal410@gmail.com");
-  const [password, setPassword] = useState("9747085250");
+  const [password, setPassword] = useState("000000");
   const [show, setShow] = useState(false);
 
   const { login, isLoading } = useLogin();
@@ -48,6 +48,7 @@ function AdminLoginForm() {
           <Input
             type="email"
             id="email"
+            autoComplete="email"
             placeholder="Enter email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -60,6 +61,7 @@ function AdminLoginForm() {
             type={`${show ? "text" : "password"}`}
             id="password"
             placeholder="Enter password"
+            autoComplete="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
