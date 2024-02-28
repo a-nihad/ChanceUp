@@ -1,4 +1,4 @@
-import UpdatePassword from "../features/authentication/UpdatePassword";
+import EditPassword from "../features/authentication/EditPassword";
 import EditSettingsForm from "../features/settings/EditSettingsForm";
 
 function Settings() {
@@ -15,7 +15,7 @@ function Settings() {
         <h1 className="rounded-t-lg bg-color_primary px-4 py-2 text-base text-color_light sm:px-8 sm:text-lg ">
           Change Password
         </h1>
-        <UpdatePassword />
+        <EditPassword />
       </div>
     </div>
   );

@@ -57,11 +57,8 @@ function EditSettingsForm() {
         />
       </div>
 
-      <div className="flex items-end justify-end gap-3">
-        <Buttion variation="secondary" className="h-max" type="reset">
-          Cancel
-        </Buttion>
-        <Buttion className="h-max">Update Setting</Buttion>
+      <div className="flex items-end">
+        <Buttion className="h-max w-full">Update Setting</Buttion>
       </div>
     </form>
   );

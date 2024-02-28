@@ -10,6 +10,9 @@ import Members from "../pages/Members";
 import Records from "../pages/Records";
 import Profile from "../pages/Profile";
 import Login from "../pages/Login";
+import ForgotPassword from "../features/authentication/ForgotPassword";
+import LoginLayout from "../ui/LoginLayout";
+import UpdatePassword from "../features/authentication/UpdatePassword";
 
 function Router() {
   return (
@@ -31,7 +34,11 @@ function Router() {
         <Route path="profile" element={<Profile />} />
       </Route>
 
-      <Route path="login" element={<Login />} />
+      <Route element={<LoginLayout />}>
+        <Route path="login" element={<Login />} />
+        <Route path="forgotPassword" element={<ForgotPassword />} />
+        <Route path="updatePassword" element={<UpdatePassword />} />
+      </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

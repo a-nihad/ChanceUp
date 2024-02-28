@@ -35,6 +35,14 @@ export async function updateAdmin(password) {
   return data;
 }
 
+export async function recoverPassword(email) {
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
 export async function logout() {
   const { error } = await supabase.auth.signOut();
 

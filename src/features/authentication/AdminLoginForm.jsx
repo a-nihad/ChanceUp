@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { HiEye, HiEyeSlash } from "react-icons/hi2";
-import { IoWallet } from "react-icons/io5";
 import { useLogin } from "./useLogin";
 import MiniLoader from "../../ui/MiniLoader";
 import Buttion from "../../ui/Buttion";
 import Input from "../../ui/Input";
 import Label from "../../ui/Label";
+import AuthHeader from "./AuthHeader";
 
 function AdminLoginForm() {
   const [email, setEmail] = useState("sulaimanalungal410@gmail.com");
@@ -29,15 +30,11 @@ function AdminLoginForm() {
   }
 
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-10">
-      <header className="flex flex-col items-center">
-        <span className="text-color_primary">
-          <IoWallet size={60} />
-        </span>
-        <h1 className="text-left text-xl font-semibold lg:text-2xl">
-          Admin login
-        </h1>
-      </header>
+    <>
+      <AuthHeader
+        heading="Admin login"
+        message="Login to your admin account to manage"
+      />
 
       <form
         onSubmit={handleSubmit}
@@ -74,8 +71,14 @@ function AdminLoginForm() {
           </span>
         </div>
         <Buttion className=""> {isLoading ? <MiniLoader /> : "Login"} </Buttion>
+        <Link
+          to="/forgotPassword"
+          className="relative bottom-2 text-right text-color_text"
+        >
+          Forgot Password
+        </Link>
       </form>
-    </div>
+    </>
   );
 }
 
