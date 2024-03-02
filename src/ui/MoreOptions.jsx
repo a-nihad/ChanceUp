@@ -41,8 +41,8 @@ function MoreOptions() {
               </span>
             </ButtonIcon>
 
-            <Modal.Window name="next_week">
-              <WeekCount />
+            <Modal.Window name="next_week" parentRef={ref}>
+              <WeekCount setClose={() => setIsOpen(false)} />
             </Modal.Window>
           </Modal>
         </div>

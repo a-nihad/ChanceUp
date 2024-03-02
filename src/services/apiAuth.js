@@ -11,6 +11,16 @@ export async function login({ email, password }) {
   return data;
 }
 
+export async function signup({ email, password }) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+  if (error) throw new Error(error.message);
+
+  return data;
+}
+
 export async function getAdmin() {
   const { data: session } = await supabase.auth.getSession();
   if (!session.session) return null;

@@ -30,7 +30,7 @@ function Open({ children, windowName }) {
   });
 }
 
-function Window({ children, name, className }) {
+function Window({ children, name, className, parentRef }) {
   const { openName, close } = useContext(ModalContext);
 
   const ref = useOutsideClick(close);
@@ -41,7 +41,7 @@ function Window({ children, name, className }) {
     <div
       className={`fixed left-0 top-0 z-40 flex h-screen w-screen items-center justify-center backdrop-blur-sm `}
     >
-      <div className="relative" ref={ref}>
+      <div className="relative" ref={parentRef ? parentRef : ref}>
         <ButtonIcon
           variation="special_Primary"
           onClick={close}

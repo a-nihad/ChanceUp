@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { useSignup } from "../authentication/useSignup";
 import { useCreateMember } from "./useCreateMember";
 import { useEditMember } from "./useEditMember";
 import Buttion from "../../ui/Buttion";
@@ -22,6 +23,7 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
 
   const { createMember } = useCreateMember();
   const { editMember } = useEditMember();
+  const signup = useSignup();
 
   function onSubmit(data) {
     data.instalment = !data.instalment ? 0 : data.instalment;
@@ -41,7 +43,7 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
           },
         },
       );
-    else
+    else {
       createMember(
         { ...data, image },
         {
@@ -50,6 +52,8 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
           },
         },
       );
+      signup({ email: data.email, password: data.phone });
+    }
   }
 
   return (

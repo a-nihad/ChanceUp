@@ -4,7 +4,7 @@ import { useEditSettings } from "./useEditSettings";
 import { useSettings } from "./useSettings";
 import { HiCalendarDays } from "react-icons/hi2";
 
-function WeekCount({ onClose }) {
+function WeekCount({ onClose, setClose }) {
   const { settings } = useSettings();
   const { editSettings } = useEditSettings();
 
@@ -14,6 +14,7 @@ function WeekCount({ onClose }) {
       currentInstalment: settings.currentInstalment + 1,
     });
     onClose();
+    setClose();
   }
 
   return (
