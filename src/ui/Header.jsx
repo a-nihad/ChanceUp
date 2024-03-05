@@ -23,11 +23,13 @@ function Header() {
             </ButtonIcon>
           </Modal.Open>
 
-          <Modal.Open windowName="collection">
-            <ButtonIcon>
-              <GiReceiveMoney size={22} />
-            </ButtonIcon>
-          </Modal.Open>
+          <div className="hidden sm:block">
+            <Modal.Open windowName="collection">
+              <ButtonIcon>
+                <GiReceiveMoney size={22} />
+              </ButtonIcon>
+            </Modal.Open>
+          </div>
 
           <MoreOptions />
 

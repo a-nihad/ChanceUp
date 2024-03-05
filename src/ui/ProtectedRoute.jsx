@@ -14,7 +14,7 @@ function ProtectedRoute({ children }) {
   useEffect(
     function () {
       if (!isAuthenticated && !isLoading) navigate("/login");
-      if (admin?.app_metadata?.role !== "super-admin") {
+      if (isAuthenticated && admin?.app_metadata?.role !== "super-admin") {
         toast.error("Only admin can access this account");
         navigate("/login");
       }
