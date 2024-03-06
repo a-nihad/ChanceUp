@@ -4,18 +4,22 @@ import InstalmentCollection from "./InstalmentCollection";
 import SearchMembers from "../../ui/SearchMembers";
 import Loader from "../../ui/Loader";
 
-function Collection({ onClose, id }) {
+function Collection({ onClose, id, setClose }) {
   const [memberId, setMemberId] = useState(id);
   const { members, isLoading } = useMembers();
 
   if (isLoading) return <Loader />;
 
   return (
-    <div className="flex w-max flex-col items-center gap-2 rounded-lg border bg-color_light p-8 shadow-lg">
+    <div className="dark:bg-dark_grey_light dark:border-dark_grey_light flex w-max flex-col items-center gap-2 rounded-lg border bg-color_light p-8 shadow-lg">
       {!memberId ? (
         <SearchMembers onMemberId={setMemberId} members={members} />
       ) : (
-        <InstalmentCollection id={memberId} onClose={onClose} />
+        <InstalmentCollection
+          id={memberId}
+          onClose={onClose}
+          setClose={setClose}
+        />
       )}
     </div>
   );

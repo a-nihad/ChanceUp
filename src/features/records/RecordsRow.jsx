@@ -1,24 +1,19 @@
 import { HiMinusCircle, HiCheckCircle } from "react-icons/hi2";
 import { GiReceiveMoney } from "react-icons/gi";
-import { useSettings } from "../settings/useSettings";
 import Menu from "../../ui/Menu";
 import Modal from "../../ui/Modal";
-import Loader from "../../ui/Loader";
 import Collection from "./Collection";
 import DetailsRecords from "./DetailsRecords";
 
-function RecordsRow({ member }) {
+function RecordsRow({ member, settings }) {
   const { name, lot, instalment, status, image, lotCount, id } = member;
-  const { settings: { perLotPrice, currentInstalment } = {}, isLoading } =
-    useSettings();
-
-  if (isLoading) return <Loader />;
+  const { perLotPrice, currentInstalment } = settings || {};
 
   const pending = currentInstalment - instalment;
   const amount = lot * perLotPrice;
 
   return (
-    <div className="grid grid-cols-[1fr_28px] rounded-lg px-4 border border-color_grey_light bg-white  text-color_text hover:bg-color_grey_light hover:text-color_primary">
+    <div className="dark:border-dark_grey_light dark:bg-dark_white grid grid-cols-[1fr_28px] rounded-lg border border-color_grey_light bg-white px-4  text-color_text hover:bg-color_grey_light hover:text-color_primary">
       <Modal>
         <Modal.Open windowName="details">
           <div className="grid grid-cols-[45px_1.8fr_1fr_1fr_1fr] items-center py-2 text-center text-sm md:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr] lg:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr_1fr]">

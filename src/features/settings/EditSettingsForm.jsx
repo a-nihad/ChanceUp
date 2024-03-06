@@ -58,7 +58,9 @@ function EditSettingsForm() {
       </div>
 
       <div className="flex items-end">
-        <Buttion className="h-max w-full">Update Setting</Buttion>
+        <Buttion className="h-max w-full border border-color_primary_dark">
+          Update Setting
+        </Buttion>
       </div>
     </form>
   );

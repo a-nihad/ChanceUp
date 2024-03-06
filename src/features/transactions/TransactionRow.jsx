@@ -12,7 +12,7 @@ function TransactionRow({ transaction, settings }) {
   const time = format(created_at, "p");
 
   return (
-    <div className="grid grid-cols-[3fr_.8fr_.8fr] items-center rounded-lg border border-color_grey_light bg-white px-2 py-2 text-sm capitalize text-color_text hover:bg-color_grey_light hover:text-color_primary sm:px-4 md:grid-cols-[1.3fr_1fr_1fr_1fr] lg:grid-cols-[1.2fr_1.5fr_1fr_1fr_1fr]">
+    <div className="dark:border-dark_grey_light dark:bg-dark_white grid grid-cols-[3fr_.8fr_.8fr] items-center rounded-lg border border-color_grey_light bg-white px-2 py-2 text-sm capitalize text-color_text hover:bg-color_grey_light hover:text-color_primary sm:px-4 md:grid-cols-[1.3fr_1fr_1fr_1fr] lg:grid-cols-[1.2fr_1.5fr_1fr_1fr_1fr]">
       <div className="hidden gap-x-1 text-right md:text-left lg:flex lg:flex-row">
         {date}
         <span className=" justify-end  md:justify-start  ">{time}</span>

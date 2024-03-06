@@ -1,8 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import ForgotPassword from "../features/authentication/ForgotPassword";
+import UpdatePassword from "../features/authentication/UpdatePassword";
 import ProtectedRoute from "../ui/ProtectedRoute";
 import Installments from "../pages/Installments";
 import PageNotFound from "../pages/PageNotFound";
 import Transactions from "../pages/Transactions";
+import LoginLayout from "../ui/LoginLayout";
 import Dashboard from "../pages/Dashboard";
 import Settings from "../pages/Settings";
 import AppLayout from "../ui/AppLayout";
@@ -10,9 +13,6 @@ import Members from "../pages/Members";
 import Records from "../pages/Records";
 import Profile from "../pages/Profile";
 import Login from "../pages/Login";
-import ForgotPassword from "../features/authentication/ForgotPassword";
-import LoginLayout from "../ui/LoginLayout";
-import UpdatePassword from "../features/authentication/UpdatePassword";
 
 function Router() {
   return (

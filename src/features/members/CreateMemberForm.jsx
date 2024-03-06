@@ -59,14 +59,14 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
   return (
     <div className={`w-screen sm:w-fit`}>
       <div
-        className={`no-scrollbar z-50 mx-5 overflow-y-scroll rounded-xl border shadow-lg sm:m-0`}
+        className={`no-scrollbar z-50 mx-5 overflow-y-scroll rounded-xl border shadow-lg sm:m-0 dark:border-color_dark_text`}
       >
-        <h1 className="sticky top-0 bg-color_primary p-3 text-lg font-semibold text-color_light sm:px-5">
+        <header className="dark:bg-dark_primary_dark sticky top-0 bg-color_primary p-3 text-lg font-semibold text-color_light sm:px-5 dark:text-color_grey">
           {isEditSession ? "Edit" : "Create"} Member
-        </h1>
+        </header>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-color_white px-5 py-2 sm:px-8 sm:py-5"
+          className="bg-color_white dark:bg-dark_grey_light px-5 py-2 sm:px-8 sm:py-5"
         >
           <div className=" gap-x-3 sm:grid">
             <FormRow label="Full Name" error={errors?.name?.message}>
@@ -142,7 +142,7 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
               <Buttion onClick={onClose} variation="secondary" type="reset">
                 Cancel
               </Buttion>
-              <Buttion> {isEditSession ? "Update " : "Create "} </Buttion>
+              <Buttion className='dark:border dark:border-color_primary_dark ' > {isEditSession ? "Update " : "Create "} </Buttion>
             </div>
           </div>
         </form>

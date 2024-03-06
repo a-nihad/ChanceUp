@@ -27,7 +27,7 @@ function EditPassword({ type }) {
       <div className="grid ">
         <Label id="password"> New Password </Label>
         <input
-          className="rounded-md border px-4 py-2 hover:text-color_primary disabled:bg-color_grey_light disabled:text-color_text disabled:hover:text-color_text"
+          className="rounded-md border px-4 py-2 hover:text-color_primary disabled:bg-color_grey_light disabled:text-color_text disabled:hover:text-color_text dark:border-color_text dark:bg-transparent dark:text-color_grey"
           type="password"
           id="password"
           autoComplete="current-password"
@@ -46,7 +46,7 @@ function EditPassword({ type }) {
       <div className="grid ">
         <Label id="passwordConfirm"> Confirm Password </Label>
         <input
-          className="rounded-md border px-4 py-2 hover:text-color_primary disabled:bg-color_grey_light disabled:text-color_text disabled:hover:text-color_text"
+          className="rounded-md border px-4 py-2 hover:text-color_primary disabled:bg-color_grey_light disabled:text-color_text disabled:hover:text-color_text dark:border-color_text dark:bg-transparent dark:text-color_grey"
           type="password"
           autoComplete="new-password"
           id="passwordConfirm"
@@ -62,7 +62,9 @@ function EditPassword({ type }) {
         </p>
       </div>
 
-      <Buttion className="h-max">Update Password </Buttion>
+      <Buttion className="h-max border border-color_primary_dark ">
+        Update Password{" "}
+      </Buttion>
     </form>
   );
 }

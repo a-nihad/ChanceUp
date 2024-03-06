@@ -15,7 +15,7 @@ function MembersRow({ member }) {
   const { deleteMember } = useDeleteMember();
 
   return (
-    <div className="grid grid-cols-[1fr_28px] rounded-lg border border-color_grey_light bg-white px-4 text-color_text hover:bg-color_grey_light hover:text-color_primary">
+    <div className="dark:border-dark_grey_light dark:bg-dark_white grid grid-cols-[1fr_28px] rounded-lg border border-color_grey_light bg-white px-4 text-color_text hover:bg-color_grey_light hover:text-color_primary">
       <Modal>
         <Modal.Open windowName="details">
           <div className="grid grid-cols-[45px_2fr_1fr_0.7fr] items-center py-2 text-sm  md:grid-cols-[45px_1.5fr_1.8fr_1fr_1.2fr] lg:grid-cols-[45px_1.5fr_1.8fr_1.2fr_1.2fr_1.8fr]">
@@ -25,7 +25,7 @@ function MembersRow({ member }) {
               alt="profile-pic"
             />
             <div className="overflow-hidden">
-              <h1 className="font-semibold capitalize text-color_primary ">
+              <h1 className="font-semibold capitalize text-color_primary  ">
                 {name}
               </h1>
               <h1 className="md:hidden ">{email}</h1>

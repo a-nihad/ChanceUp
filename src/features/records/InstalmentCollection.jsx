@@ -6,7 +6,7 @@ import { useMember } from "../members/useMember";
 import Buttion from "../../ui/Buttion";
 import Loader from "../../ui/Loader";
 
-function InstalmentCollection({ id, onClose }) {
+function InstalmentCollection({ id, onClose, setClose }) {
   const { isLoading, member } = useMember(id);
   const { settings, isLoading: settingsLoading } = useSettings();
   const { editMember } = useEditMember();
@@ -22,6 +22,7 @@ function InstalmentCollection({ id, onClose }) {
       {
         onSuccess: () => {
           onClose();
+          setClose();
         },
       },
     );
@@ -35,11 +36,11 @@ function InstalmentCollection({ id, onClose }) {
   return (
     <div className="flex w-max flex-col items-center gap-2 rounded-lg ">
       <img
-        className="h-20 w-20 rounded-full object-cover object-center outline outline-2 outline-offset-2 outline-color_grey"
+        className="h-20 w-20 rounded-full object-cover object-center outline outline-2 outline-offset-2 outline-color_grey dark:outline-color_text"
         src={member.image}
         alt="img"
       />
-      <h1 className="font-bold capitalize"> {member.name}</h1>
+      <h1 className="font-bold capitalize  dark:text-color_grey"> {member.name}</h1>
       <div className="flex flex-col items-center rounded-lg text-sm text-color_text">
         <p>
           {member.name}'s Lot is
@@ -56,7 +57,7 @@ function InstalmentCollection({ id, onClose }) {
 
       <Buttion
         variation="primary"
-        className="mt-3 w-[250px]"
+        className="mt-3 w-[250px] border dark:border-color_primary_dark"
         onClick={handleClick}
       >
         Payment Recived

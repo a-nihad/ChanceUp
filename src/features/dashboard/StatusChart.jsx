@@ -9,7 +9,7 @@ import {
 
 function StatusChart({ data, heading }) {
   return (
-    <div className=" flex flex-col items-center justify-center rounded-xl border border-color_grey_light bg-white ">
+    <div className=" dark:border-dark_grey_light dark:bg-dark_white flex flex-col items-center justify-center rounded-xl border border-color_grey_light bg-white ">
       <h1 className="pt-2 uppercase text-color_text"> {heading} </h1>
       <ResponsiveContainer height={140}>
         <PieChart>

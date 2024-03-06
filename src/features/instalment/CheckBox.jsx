@@ -3,7 +3,7 @@ import { IoCheckbox } from "react-icons/io5";
 
 function CheckBox({ count, member }) {
   return (
-    <div className="flex gap-2 text-color_grey ">
+    <div className="flex gap-2 text-color_grey dark:text-color_dark_text ">
       {Array.from({ length: count }, (_, index) =>
         index >= member.instalment ? (
           <h2 key={index}> {<MdCheckBoxOutlineBlank size={22} />} </h2>

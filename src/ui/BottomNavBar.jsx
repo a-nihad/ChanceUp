@@ -1,42 +1,41 @@
 import { NavLink } from "react-router-dom";
 import * as hi2Icons from "react-icons/hi2";
 import { HiMiniPlus } from "react-icons/hi2";
-import Modal from "./Modal";
 import Collection from "../features/records/Collection";
 import ButtonIcon from "./ButtonIcon";
+import Modal from "./Modal";
 
 function BottomNavBar() {
   return (
-    <div className="fixed bottom-0 z-20 flex w-screen justify-around border bg-white text-color_text sm:hidden ">
+    <div className="fixed bottom-0 z-20 flex w-screen items-center justify-around border bg-white dark:bg-dark_white dark:border-dark_grey_light text-color_text sm:hidden ">
       {navigateList.map((data, index) => {
-        return (
-          <>
-            <div className={`${index === 2 ? "flex items-center " : "hidden"}`}>
-              <Modal>
-                <Modal.Open windowName="collection">
-                  <ButtonIcon variation="special">
-                    <HiMiniPlus size={22} />
-                  </ButtonIcon>
-                </Modal.Open>
-                <Modal.Window name="collection">
-                  <Collection />
-                </Modal.Window>
-              </Modal>
-            </div>
-
+        if (index === 2)
+          return (
+            <Modal key={index}>
+              <Modal.Open windowName="collection">
+                <ButtonIcon variation="special" className="h-max dark:hover:bg-color_grey ">
+                  <HiMiniPlus size={22} />
+                </ButtonIcon>
+              </Modal.Open>
+              <Modal.Window name="collection">
+                <Collection />
+              </Modal.Window>
+            </Modal>
+          );
+        else
+          return (
             <NavLink
               to={data.path}
-              key={data.title}
+              key={index}
               className={({ isActive }) => {
-                return `p-6 px-4 hover:text-color_primary ${isActive && "bg-white text-color_primary "} `;
+                return `p-4 hover:text-color_primary ${isActive && "bg-white dark:bg-dark_white text-color_primary "} `;
               }}
             >
-              <div className="text-2xl flex flex-col items-center ">
-                {data.icon} <span className="text-xs" > {data.title} </span>
+              <div className="flex flex-col items-center text-2xl ">
+                {data.icon} <span className="text-xs"> {data.title} </span>
               </div>
             </NavLink>
-          </>
-        );
+          );
       })}
     </div>
   );
@@ -55,6 +54,7 @@ const navigateList = [
     path: "/members",
     icon: <hi2Icons.HiUsers />,
   },
+  {},
   {
     title: "Records",
     path: "/records",

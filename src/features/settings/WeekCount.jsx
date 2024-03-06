@@ -18,11 +18,11 @@ function WeekCount({ onClose, setClose }) {
   }
 
   return (
-    <div className=" flex w-max flex-col items-center gap-2 rounded-lg border bg-white p-8 shadow-lg ">
+    <div className=" dark:bg-dark_grey_light flex w-max flex-col items-center gap-2 rounded-lg border dark:border-dark_grey_light bg-white p-8 shadow-lg ">
       <p className="text-color_text">
         <HiCalendarDays size={30} />
       </p>
-      <h1 className="font-semibold ">
+      <h1 className="font-semibold dark:text-color_grey ">
         Current Week :-
         <span className="px-1 text-color_primary">
           {settings?.currentInstalment}
@@ -35,7 +35,7 @@ function WeekCount({ onClose, setClose }) {
 
       <Buttion
         variation="primary"
-        className="mt-3 w-[250px]"
+        className="mt-3 w-[250px] border dark:border-color_primary_dark "
         onClick={handleClick}
       >
         Next Week

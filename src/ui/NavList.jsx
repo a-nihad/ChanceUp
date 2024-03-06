@@ -12,7 +12,7 @@ function NavList({ sideBar, showSideBar }) {
             to={data.path}
             key={data.title}
             className={({ isActive }) => {
-              return `text-md flex items-center gap-3 rounded-l-full px-7 py-3 transition-all duration-500 hover:bg-white hover:text-color_primary ${isActive && "bg-white text-color_primary "} `;
+              return `text-md flex items-center gap-3 rounded-l-full px-7 py-3 transition-all duration-500 hover:bg-white dark:hover:bg-color_primary_dark dark:hover:text-color_grey hover:text-color_primary ${isActive && "bg-white dark:bg-color_primary_dark dark:text-color_grey text-color_primary "} `;
             }}
             onClick={showSideBar}
           >

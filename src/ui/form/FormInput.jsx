@@ -1,5 +1,5 @@
 function FormInput({ register, id, required, className, ...props }) {
-  const style = `rounded-md border text-color_text border-color_grey bg-transparent px-4 py-2 sm:placeholder:text-transparent ${className ? className : ""} `;
+  const style = `rounded-md border text-color_text border-color_grey dark:outline-none dark:border-color_text bg-transparent px-4 py-2 sm:placeholder:text-transparent ${className ? className : ""} `;
   return (
     <>
       {required ? (

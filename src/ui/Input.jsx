@@ -4,7 +4,7 @@ function Input({ type, className, register, id, ...props }) {
       {register ? (
         <input
           type={type}
-          className={` rounded-md border px-4 py-2 hover:text-color_primary disabled:bg-color_grey_light disabled:text-color_text  ${className}`}
+          className={` ${type === "name" ? "lowercase" : ""} rounded-md border px-4 py-2 hover:text-color_primary disabled:bg-color_grey_light disabled:text-color_text dark:border-color_text dark:bg-transparent dark:text-color_grey  ${className}`}
           {...register(id)}
           {...props}
         />
@@ -12,7 +12,7 @@ function Input({ type, className, register, id, ...props }) {
         <input
           type={type}
           required
-          className={` rounded-md border px-4 py-2 hover:text-color_primary  ${className}`}
+          className={` ${type === "name" ? "lowercase" : ""} rounded-md border px-4 py-2 hover:text-color_primary dark:border-color_text dark:bg-transparent dark:text-color_grey ${className}`}
           {...props}
         />
       )}

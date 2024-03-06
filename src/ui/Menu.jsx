@@ -58,7 +58,7 @@ function List({ id, children }) {
   return createPortal(
     <div
       style={{ right: `${x}px`, top: `${y}px` }}
-      className={` fixed divide-y divide-dashed rounded-md border bg-white p-3 shadow-lg`}
+      className={` dark:border-dark_grey_light dark:bg-dark_light fixed divide-y dark:divide-color_text divide rounded-md border bg-white p-3 shadow-lg`}
       ref={ref}
     >
       {children}
@@ -76,7 +76,7 @@ function Button({ children, icon, onClick }) {
   }
   return (
     <button
-      className="hover:bg-color_grey_light flex w-full items-center gap-3 p-2 text-left text-color_text hover:text-color_primary"
+      className="flex w-full items-center gap-3 p-2 text-left text-color_text hover:bg-color_grey_light dark:rounded-md dark:hover:bg-dark_white hover:text-color_primary dark:hover:text-color_text"
       onClick={handleClick}
     >
       {icon} {children}
