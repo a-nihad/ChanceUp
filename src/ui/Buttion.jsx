@@ -7,9 +7,9 @@ function Buttion({
   ...props
 }) {
   const primary =
-    "bg-color_primary dark:bg-dark_primary_dark text-color_white hover:bg-color_primary_dark dark:hover:bg-color_primary";
+    "bg-color_primary dark:bg-dark_primary_dark text-color_white hover:bg-color_primary_dark dark:hover:bg-color_primary dark:border dark:border-color_primary_dark";
   const secondary =
-    "border hover:bg-color_grey dark:text-color_grey dark:hover:text-black ";
+    "border hover:bg-color_grey dark:border-color_text dark:text-color_grey dark:hover:text-black ";
   const danger =
     "bg-color_red dark:bg-color_red_dark text-color_white hover:bg-color_red_dark dark:hover:bg-color_red ";
 

@@ -1,10 +1,20 @@
+import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { useSettings } from "./useSettings";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useEditSettings } from "./useEditSettings";
-import Loader from "../../ui/Loader";
-import Input from "../../ui/Input";
+import { useSettings } from "./useSettings";
+import FormInput from "../../ui/form/FormInput";
+import FormRow from "../../ui/form/FormRow";
 import Buttion from "../../ui/Buttion";
-import Label from "../../ui/Label";
+import Loader from "../../ui/Loader";
+
+const validationSchema = yup
+  .object({
+    totalInstallment: yup.number(),
+    perLotPrice: yup.number(),
+    currentInstalment: yup.number(),
+  })
+  .required();
 
 function EditSettingsForm() {
   const {
@@ -14,53 +24,47 @@ function EditSettingsForm() {
 
   const { editSettings } = useEditSettings();
 
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+
+  if (isLoading) return <Loader />;
 
   function onSubmit(data) {
     editSettings(data);
   }
 
-  if (isLoading) return <Loader />;
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="grid max-w-[800px] gap-y-3 p-2 px-5 pb-5 sm:grid-cols-2 sm:gap-x-8 lg:px-8 lg:pb-8 "
+      className="grid max-w-[800px] gap-y-3 p-5 sm:grid-cols-2 sm:gap-x-8 lg:p-8 lg:pt-5 "
     >
-      <div className="grid ">
-        <Label id="totalInstallment"> Total Installment </Label>
-        <Input
-          type="number"
+      <FormRow label="Total Installment" type="secondary">
+        <FormInput
           id="totalInstallment"
           register={register}
           defaultValue={totalInstallment}
         />
-      </div>
+      </FormRow>
 
-      <div className="grid ">
-        <Label id="perLotPrice"> Lot Price </Label>
-        <Input
-          type="number"
+      <FormRow label="Lot Price" type="secondary">
+        <FormInput
           id="perLotPrice"
           register={register}
           defaultValue={perLotPrice}
         />
-      </div>
+      </FormRow>
 
-      <div className="grid ">
-        <Label id="currentInstalment"> Current Installment </Label>
-        <Input
-          type="number"
+      <FormRow label="Current Installment" type="secondary">
+        <FormInput
           id="currentInstalment"
           register={register}
           defaultValue={currentInstalment}
         />
-      </div>
+      </FormRow>
 
       <div className="flex items-end">
-        <Buttion className="h-max w-full border border-color_primary_dark">
-          Update Setting
-        </Buttion>
+        <Buttion className="h-max w-full">Update Setting</Buttion>
       </div>
     </form>
   );

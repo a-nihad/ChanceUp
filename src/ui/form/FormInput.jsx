@@ -1,17 +1,10 @@
-function FormInput({ register, id, required, className, ...props }) {
-  const style = `rounded-md border text-color_text border-color_grey dark:outline-none dark:border-color_text bg-transparent px-4 py-2 sm:placeholder:text-transparent ${className ? className : ""} `;
+function FormInput({ register, id, className, ...props }) {
   return (
-    <>
-      {required ? (
-        <input
-          {...register(id, { required: "This field is require" })}
-          className={style}
-          {...props}
-        />
-      ) : (
-        <input {...register(id)} className={style} {...props} />
-      )}
-    </>
+    <input
+      className={`rounded-md border border-color_grey bg-transparent px-4 py-2 text-color_text dark:border-color_text outline-none dark:placeholder:text-color_text sm:placeholder:text-transparent ${className ? className : ""} `}
+      {...register(id)}
+      {...props}
+    />
   );
 }
 

@@ -1,11 +1,26 @@
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
 import { DevTool } from "@hookform/devtools";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useSignup } from "../authentication/useSignup";
 import { useCreateMember } from "./useCreateMember";
 import { useEditMember } from "./useEditMember";
-import Buttion from "../../ui/Buttion";
-import FormRow from "../../ui/form/FormRow";
 import FormInput from "../../ui/form/FormInput";
+import FormRow from "../../ui/form/FormRow";
+import Buttion from "../../ui/Buttion";
+
+const validationSchema = yup
+  .object({
+    name: yup.string().required("Full Name is required"),
+    phone: yup.string().required("Phone number is required").min(10),
+    email: yup
+      .string()
+      .required("Email Address is required")
+      .email("Invalid email format"),
+    address: yup.string().required("Address is required"),
+    lot: yup.number().required("lot size is required").positive(),
+  })
+  .required();
 
 function CreateMemberForm({ memberToEdit = {}, onClose }) {
   const { id: memberId, ...editValue } = memberToEdit;
@@ -18,7 +33,12 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
     formState: { errors },
     reset,
   } = useForm({
-    defaultValues: isEditSession ? editValue : {},
+    resolver: yupResolver(validationSchema),
+    defaultValues: isEditSession
+      ? editValue
+      : {
+          lot: 1,
+        },
   });
 
   const { createMember } = useCreateMember();
@@ -59,81 +79,57 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
   return (
     <div className={`w-screen sm:w-fit`}>
       <div
-        className={`no-scrollbar z-50 mx-5 overflow-y-scroll rounded-xl border shadow-lg sm:m-0 dark:border-color_dark_text`}
+        className={`no-scrollbar z-50 mx-5 overflow-y-scroll rounded-xl border shadow-lg dark:border-color_dark_text sm:m-0`}
       >
-        <header className="dark:bg-dark_primary_dark sticky top-0 bg-color_primary p-3 text-lg font-semibold text-color_light sm:px-5 dark:text-color_grey">
+        <header className="sticky top-0 bg-color_primary p-3 text-lg font-semibold text-color_light dark:bg-dark_primary_dark dark:text-color_grey sm:px-5">
           {isEditSession ? "Edit" : "Create"} Member
         </header>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-color_white dark:bg-dark_grey_light px-5 py-2 sm:px-8 sm:py-5"
+          className="bg-color_white p-5 dark:bg-dark_grey_light sm:px-8 sm:py-5"
         >
-          <div className=" gap-x-3 sm:grid">
+          <div className=" gap-x-3 space-y-3 sm:grid">
             <FormRow label="Full Name" error={errors?.name?.message}>
               <FormInput
-                type="text"
                 id="name"
                 register={register}
-                required={true}
                 placeholder="Full Name"
               />
             </FormRow>
 
             <FormRow label="Phone Number" error={errors?.phone?.message}>
               <FormInput
-                type="text"
                 id="phone"
                 register={register}
-                required={true}
                 placeholder="Phone Number"
               />
             </FormRow>
 
             <FormRow label="Email" error={errors?.email?.message}>
-              <FormInput
-                type="email"
-                id="email"
-                register={register}
-                required={true}
-                placeholder="Email"
-              />
+              <FormInput id="email" register={register} placeholder="Email" />
             </FormRow>
 
             <FormRow label="Place" error={errors?.place?.message}>
-              <FormInput
-                type="text"
-                id="place"
-                register={register}
-                required={true}
-                placeholder="Place"
-              />
+              <FormInput id="place" register={register} placeholder="Place" />
             </FormRow>
 
             <FormRow label="Address" error={errors?.address?.message}>
               <FormInput
-                type="text"
                 id="address"
                 register={register}
-                required={true}
                 placeholder="Address"
               />
             </FormRow>
 
             <FormRow label="Lots" error={errors?.lot?.message}>
-              <FormInput
-                type="number"
-                id="lot"
-                register={register}
-                required={true}
-                placeholder="Lots"
-              />
+              <FormInput id="lot" register={register} placeholder="Lots" />
             </FormRow>
 
             <input
               type="file"
               id="image"
               accept="image/*"
-              className=" col-span-2 p-2 text-color_text file:cursor-pointer file:rounded-lg file:border-none file:bg-color_grey file:px-4 file:py-2 "
+              className=" col-span-2 w-[220px] py-2 text-color_text file:cursor-pointer file:rounded-lg file:border-none file:bg-color_grey file:px-3 file:py-2 sm:w-max "
               placeholder="Chose Profile pic"
               {...register("image")}
             />
@@ -142,7 +138,7 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
               <Buttion onClick={onClose} variation="secondary" type="reset">
                 Cancel
               </Buttion>
-              <Buttion className='dark:border dark:border-color_primary_dark ' > {isEditSession ? "Update " : "Create "} </Buttion>
+              <Buttion>{isEditSession ? "Update " : "Create "}</Buttion>
             </div>
           </div>
         </form>

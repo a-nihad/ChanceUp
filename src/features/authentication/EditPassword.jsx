@@ -1,17 +1,36 @@
+import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useUpdateAdmin } from "./useUpdateAdmin";
+import FormInput from "../../ui/form/FormInput";
+import FormRow from "../../ui/form/FormRow";
 import Buttion from "../../ui/Buttion";
-import Label from "../../ui/Label";
-import { useNavigate } from "react-router-dom";
+
+const validationSchema = yup
+  .object({
+    password: yup.string().required("This field is required").min(6),
+    passwordConfirm: yup
+      .string()
+      .oneOf([yup.ref("password")], "Passwords must match")
+      .required("This field is required"),
+  })
+  .required();
 
 function EditPassword({ type }) {
-  const { register, handleSubmit, formState, getValues, reset } = useForm();
-  const { errors } = formState;
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
 
   const { updateAdmin, isUpdating } = useUpdateAdmin();
 
   const settings =
-    "grid max-w-[800px] gap-y-3 p-2 px-5 pb-5 sm:grid-cols-2 sm:gap-x-8 lg:px-8 lg:pb-8";
+    "grid max-w-[800px] gap-y-3 p-5 sm:grid-cols-2 sm:gap-x-8 lg:p-8 lg:pt-5";
   const login =
     "flex w-full max-w-[400px] flex-col gap-3 px-10 lg:max-w-[500px]";
 
@@ -24,47 +43,30 @@ function EditPassword({ type }) {
       onSubmit={handleSubmit(onSubmit)}
       className={type === "login" ? login : settings}
     >
-      <div className="grid ">
-        <Label id="password"> New Password </Label>
-        <input
-          className="rounded-md border px-4 py-2 hover:text-color_primary disabled:bg-color_grey_light disabled:text-color_text disabled:hover:text-color_text dark:border-color_text dark:bg-transparent dark:text-color_grey"
-          type="password"
+      <FormRow label="New Password" error={errors?.password?.message}>
+        <FormInput
           id="password"
-          autoComplete="current-password"
+          register={register}
           disabled={isUpdating}
-          {...register("password", {
-            required: "This field is required",
-            minLength: {
-              value: 6,
-              message: "Password needs a minimum of 6 characters",
-            },
-          })}
+          autoComplete="password"
+          placeholder="New Password"
         />
-        <p className="text-xs text-color_red"> {errors?.password?.message} </p>
-      </div>
+      </FormRow>
 
-      <div className="grid ">
-        <Label id="passwordConfirm"> Confirm Password </Label>
-        <input
-          className="rounded-md border px-4 py-2 hover:text-color_primary disabled:bg-color_grey_light disabled:text-color_text disabled:hover:text-color_text dark:border-color_text dark:bg-transparent dark:text-color_grey"
-          type="password"
-          autoComplete="new-password"
+      <FormRow
+        label="Confirm Password"
+        error={errors?.passwordConfirm?.message}
+      >
+        <FormInput
           id="passwordConfirm"
+          register={register}
           disabled={isUpdating}
-          {...register("passwordConfirm", {
-            required: "This field is required",
-            validate: (value) =>
-              getValues().password === value || "Passwords need to match",
-          })}
+          autoComplete="password"
+          placeholder="Confirm Password"
         />
-        <p className="text-xs text-color_red">
-          {errors?.passwordConfirm?.message}
-        </p>
-      </div>
+      </FormRow>
 
-      <Buttion className="h-max border border-color_primary_dark ">
-        Update Password{" "}
-      </Buttion>
+      <Buttion className="h-max">Update Password</Buttion>
     </form>
   );
 }

@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import emailjs from "@emailjs/browser";
 import { useCreatetransaction } from "../transactions/useCreatetransaction";
 import { useEditMember } from "../members/useEditMember";
 import { useSettings } from "../settings/useSettings";
@@ -31,6 +32,28 @@ function InstalmentCollection({ id, onClose, setClose }) {
       instalment_count: member.instalment + 1,
       member_id: member.id,
     });
+
+    // EmailJS
+    const SERVICE_ID = "service_oi3mujc";
+    const TEMPLATE_ID = "template_6bwi81s";
+    const PUBLIC_KEY = "f2iUsqsk9W9-AfMle";
+
+    // Create a new object that contains dynamic template params
+    const template_params = {
+      reply_to: member.email,
+      user_name: member.name.toUpperCase(),
+      message: `I have received the ${member.instalment + 1}th installment of Rs ${member.lot * settings.perLotPrice}.`,
+    };
+
+    // Send the email using EmailJS
+    emailjs
+      .send(SERVICE_ID, TEMPLATE_ID, template_params, PUBLIC_KEY)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log("Error Sending email:", error);
+      });
   }
 
   return (
@@ -40,7 +63,10 @@ function InstalmentCollection({ id, onClose, setClose }) {
         src={member.image}
         alt="img"
       />
-      <h1 className="font-bold capitalize  dark:text-color_grey"> {member.name}</h1>
+      <h1 className="font-bold capitalize  dark:text-color_grey">
+        {" "}
+        {member.name}
+      </h1>
       <div className="flex flex-col items-center rounded-lg text-sm text-color_text">
         <p>
           {member.name}'s Lot is

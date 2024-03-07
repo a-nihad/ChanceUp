@@ -1,9 +1,11 @@
-function FormRow({ children, label, error, className }) {
+function FormRow({ children, label, error, className, type }) {
   return (
-    <div className={`grid items-center p-2 ${className} `}>
+    <div
+      className={`grid items-center ${type === "secondary" ? "grid-cols-2 sm:grid-cols-none" : ""} ${className} `}
+    >
       {label && (
         <label
-          className={`hidden text-base text-color_text sm:block`}
+          className={` ${type === "secondary" ? "text-sm" : "hidden"} text-color_text sm:block sm:text-base`}
           htmlFor={children.props.id}
         >
           {label}

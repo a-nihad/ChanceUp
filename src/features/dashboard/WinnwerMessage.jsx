@@ -5,7 +5,7 @@ function WinnwerMessage({ settings }) {
     <div className="relative flex flex-col justify-center rounded-xl bg-color_blue_light dark:bg-dark_white p-4 text-xl text-color_primary sm:p-8">
       <h1 className="capitalize dark:text-color_grey" >
         Winner
-        <span className="px-1 font-semibold capitalize">{settings.winner}</span>
+        <span className="px-1 font-semibold uppercase ">{settings.winner}</span>
       </h1>
       <img
         src="/gift.png"
