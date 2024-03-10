@@ -12,7 +12,7 @@ function ButtonIcon({ onClick, children, variation, disabled, className }) {
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`cursor-pointer rounded-full p-2 ${variation === "secondary" ? secondary : variation === "special_Primary" ? special_Primary : variation === "special" ? special : primary} ${className ? className : ""} `}
+      className={`cursor-pointer rounded-full p-2 ${variation === "secondary" ? secondary : variation === "special_Primary" ? special_Primary : variation === "special" ? special : primary} ${className} `}
     >
       {children}
     </button>

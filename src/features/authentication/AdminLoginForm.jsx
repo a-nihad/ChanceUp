@@ -1,30 +1,55 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { HiEye, HiEyeSlash } from "react-icons/hi2";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useLogin } from "./useLogin";
-import MiniLoader from "../../ui/MiniLoader";
-import Buttion from "../../ui/Buttion";
-import Input from "../../ui/Input";
-import Label from "../../ui/Label";
+import Form from "../../ui/form/Form";
 import AuthHeader from "./AuthHeader";
+import Buttion from "../../ui/Buttion";
+import FormRow from "../../ui/form/FormRow";
+import MiniLoader from "../../ui/MiniLoader";
+import FormInput from "../../ui/form/FormInput";
+import ShowPassword from "../../ui/form/ShowPassword";
+
+const validationSchema = yup
+  .object({
+    email: yup.string().email().required("Email is required"),
+    password: yup.string().required("Password is required"),
+  })
+  .required();
 
 function AdminLoginForm() {
-  const [email, setEmail] = useState("sulaimanalungal410@gmail.com");
-  const [password, setPassword] = useState("000000");
   const [show, setShow] = useState(false);
 
-  const { login, isLoading } = useLogin();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      email: "sulaimanalungal410@gmail.com",
+      password: "000000",
+    },
+  });
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const { login, isPending } = useLogin();
+
+  function onSubmit({ email, password }) {
     login(
       { email, password },
       {
-        onSettled: () => {
-          setPassword("");
+        onSuccess: () => toast.success("Welcome"),
+        onError: ({ message }) => {
+          if (message === "Failed to fetch") {
+            toast.error(
+              `Failed to fetch, 
+              Please check your internet connection`,
+            );
+          } else toast.error("Inorrect email or password");
         },
-        onError: () => toast.error("Inorrect email or password"),
       },
     );
   }
@@ -36,48 +61,39 @@ function AdminLoginForm() {
         message="Login to your admin account to manage"
       />
 
-      <form
-        onSubmit={handleSubmit}
-        className="flex w-full max-w-[400px] flex-col gap-3 px-10 lg:max-w-[500px] "
-      >
-        <div className="flex flex-col">
-          <Label id="email"> Email address </Label>
-          <Input
-            type="email"
+      <Form onSubmit={handleSubmit(onSubmit)} type="auth">
+        <FormRow label="Email address" error={errors?.email?.message}>
+          <FormInput
             id="email"
+            register={register}
+            disabled={isPending}
             autoComplete="email"
-            placeholder="Enter email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email address"
           />
-        </div>
+        </FormRow>
 
-        <div className="relative flex flex-col">
-          <Label id="password"> Password </Label>
-          <Input
-            type={`${show ? "text" : "password"}`}
-            id="password"
-            placeholder="Enter password"
-            autoComplete="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <FormRow label="Password" error={errors?.password?.message}>
+          <ShowPassword show={show} setShow={setShow}>
+            <FormInput
+              id="password"
+              type={`${show ? "text" : "password"}`}
+              register={register}
+              disabled={isPending}
+              autoComplete="password"
+              placeholder="Enter your password"
+            />
+          </ShowPassword>
+        </FormRow>
 
-          <span
-            className="absolute bottom-3 right-3 text-color_text"
-            onClick={() => setShow(!show)}
-          >
-            {show ? <HiEyeSlash size={20} /> : <HiEye size={20} />}
-          </span>
-        </div>
-        <Buttion className=""> {isLoading ? <MiniLoader /> : "Login"} </Buttion>
+        <Buttion> {isPending ? <MiniLoader /> : "Login"} </Buttion>
+
         <Link
           to="/forgotPassword"
-          className="relative bottom-2 text-right text-color_text"
+          className="relative bottom-2 text-right text-color_text hover:text-color_primary hover:underline"
         >
           Forgot Password
         </Link>
-      </form>
+      </Form>
     </>
   );
 }

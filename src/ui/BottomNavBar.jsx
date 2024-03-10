@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import * as hi2Icons from "react-icons/hi2";
-import { HiMiniPlus } from "react-icons/hi2";
 import Collection from "../features/records/Collection";
 import ButtonIcon from "./ButtonIcon";
 import Modal from "./Modal";
@@ -14,7 +13,7 @@ function BottomNavBar() {
             <Modal key={index}>
               <Modal.Open windowName="collection">
                 <ButtonIcon variation="special" className="h-max dark:hover:bg-color_grey ">
-                  <HiMiniPlus size={22} />
+                  <hi2Icons.HiMiniPlus size={22} />
                 </ButtonIcon>
               </Modal.Open>
               <Modal.Window name="collection">

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { IoArrowUndoSharp } from "react-icons/io5";
+import ProfilePic from "./ProfilePic";
 import SearchBar from "./SearchBar";
 
 function SearchMembers({ onMemberId, members }) {
@@ -25,18 +26,13 @@ function SearchMembers({ onMemberId, members }) {
         {members.map((member) => (
           <button
             key={member.id}
-            className="flex items-center justify-between gap-4 rounded-lg bg-white dark:bg-dark_white p-2 px-4 capitalize text-color_text hover:bg-color_grey_light hover:text-color_primary"
+            className="flex items-center justify-between gap-4 rounded-lg border border-color_grey_light bg-white p-2 px-4 capitalize text-color_text hover:bg-color_grey_light hover:text-color_primary dark:border-none dark:bg-dark_white"
             onClick={() => handleClick(member.id)}
           >
             <div className="flex items-center gap-4">
-              <img
-                className="h-9 w-9 rounded-full object-cover object-center "
-                src={member.image}
-                alt="profile-pic"
-              />
+              <ProfilePic image={member.image} />
               {member.name}
             </div>
-
             <IoArrowUndoSharp />
           </button>
         ))}

@@ -1,9 +1,11 @@
 import { HiMinusCircle, HiCheckCircle } from "react-icons/hi2";
 import { GiReceiveMoney } from "react-icons/gi";
-import Menu from "../../ui/Menu";
-import Modal from "../../ui/Modal";
-import Collection from "./Collection";
+import TableRow from "../../ui/table/TableRow";
 import DetailsRecords from "./DetailsRecords";
+import ProfilePic from "../../ui/ProfilePic";
+import Collection from "./Collection";
+import Modal from "../../ui/Modal";
+import Menu from "../../ui/Menu";
 
 function RecordsRow({ member, settings }) {
   const { name, lot, instalment, status, image, lotCount, id } = member;
@@ -13,16 +15,12 @@ function RecordsRow({ member, settings }) {
   const amount = lot * perLotPrice;
 
   return (
-    <div className="dark:border-dark_grey_light dark:bg-dark_white grid grid-cols-[1fr_28px] rounded-lg border border-color_grey_light bg-white px-4  text-color_text hover:bg-color_grey_light hover:text-color_primary">
+    <TableRow type="wrap">
       <Modal>
         <Modal.Open windowName="details">
           <div className="grid grid-cols-[45px_1.8fr_1fr_1fr_1fr] items-center py-2 text-center text-sm md:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr] lg:grid-cols-[45px_1.8fr_1fr_1fr_1fr_1fr_1fr_1fr]">
-            <img
-              className="h-9 w-9 rounded-full object-cover object-center"
-              src={image}
-              alt="profile-pic"
-            />
-            <div className="flex flex-col text-left">
+            <ProfilePic image={image} />
+            <div className="text-left">
               <h1 className="font-semibold capitalize text-color_primary ">
                 {name}
               </h1>
@@ -30,10 +28,11 @@ function RecordsRow({ member, settings }) {
                 {lot}
               </h1>
             </div>
+
             <h1 className="hidden md:block"> {lot} </h1>
             <h1 className="hidden md:block"> {amount} </h1>
-            <h1 className=""> {instalment} </h1>
-            <h1 className="font-bold"> {pending} </h1>
+            <h1> {instalment} </h1>
+            <b> {pending} </b>
             <h1 className="hidden lg:block"> {lotCount} </h1>
             <div
               className={`flex items-center justify-center font-medium uppercase `}
@@ -64,7 +63,6 @@ function RecordsRow({ member, settings }) {
         <Menu>
           <Modal>
             <Menu.Toggle id={id} />
-
             <Menu.List id={id}>
               <Modal.Open windowName="collection">
                 <Menu.Button>
@@ -79,7 +77,7 @@ function RecordsRow({ member, settings }) {
           </Modal>
         </Menu>
       </div>
-    </div>
+    </TableRow>
   );
 }
 

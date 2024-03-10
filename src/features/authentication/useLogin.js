@@ -7,17 +7,16 @@ export function useLogin() {
   const navigate = useNavigate();
   const queryClint = useQueryClient();
 
-  const { mutate: login, isLoading } = useMutation({
+  const { mutate: login, isPending } = useMutation({
     mutationFn: loginApi,
     onSuccess: (admin) => {
       queryClint.setQueryData(["admin"], admin.user);
       navigate("/dashboard", { replace: true });
     },
     onError: () => {
-      onsole.log("Error", err);
+      console.log("Error", err);
       toast.error("Provided email or password are incorrect");
     },
   });
-
-  return { login, isLoading };
+  return { login, isPending };
 }

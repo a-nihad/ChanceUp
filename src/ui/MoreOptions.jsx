@@ -1,14 +1,14 @@
 import { useState } from "react";
+import { TbLogout } from "react-icons/tb";
+import { GiReceiveMoney } from "react-icons/gi";
 import { HiCalendarDays } from "react-icons/hi2";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useLogout } from "../features/authentication/useLogout";
 import { useOutsideClick } from "../hooks/useOutsideClick";
-import { TbLogout } from "react-icons/tb";
+import { useLogout } from "../features/authentication/useLogout";
+import Collection from "../features/records/Collection";
+import WeekCount from "../features/settings/WeekCount";
 import ButtonIcon from "./ButtonIcon";
 import Modal from "./Modal";
-import WeekCount from "../features/settings/WeekCount";
-import { GiReceiveMoney } from "react-icons/gi";
-import Collection from "../features/records/Collection";
 
 function MoreOptions() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +23,7 @@ function MoreOptions() {
       </ButtonIcon>
 
       {isOpen && (
-        <div className="absolute right-0 z-30 mt-1 flex w-max flex-col gap-1 rounded-xl border dark:border-color_text border-color_grey_light bg-white dark:bg-dark_grey_light p-3 text-sm shadow-lg">
+        <div className="absolute right-0 z-30 mt-1 flex w-max flex-col gap-1 rounded-xl border border-color_grey_light bg-white p-3 text-sm shadow-lg dark:border-color_text dark:bg-dark_grey_light">
           <Modal>
             <Modal.Open windowName="next_week">
               <ButtonIcon variation="special_Primary" className="rounded-lg">

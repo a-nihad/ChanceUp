@@ -7,28 +7,28 @@ import StatusBox from "./StatusBox";
 function Status({ settings, count }) {
   const { totalInstallment, currentInstalment } = settings;
   return (
-    <div className="grid gap-4 py-4 grid-cols-2">
+    <div className="grid grid-cols-2 gap-4 py-4">
       <StatusBox
-        icon={<FaUserAlt  />}
+        icon={<FaUserAlt />}
         title="Members "
         value={count}
         color="red"
       />
       <StatusBox
-        icon={<BsCashStack  />}
+        icon={<BsCashStack />}
         title="Instalment"
         value={totalInstallment}
         color="yellow"
         side="right"
       />
       <StatusBox
-        icon={<HiCalendarDays  />}
+        icon={<HiCalendarDays />}
         title="Current "
         value={currentInstalment}
         color="green"
       />
       <StatusBox
-        icon={<MdPendingActions  />}
+        icon={<MdPendingActions />}
         title="Balance "
         value={totalInstallment - currentInstalment}
         color="indigo"

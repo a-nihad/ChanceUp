@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 import { useAdmin } from "../features/authentication/useAdmin";
 import Loader from "./Loader";
-import { toast } from "react-hot-toast";
 
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();

@@ -11,7 +11,7 @@ function NavButtion({ sideBar, setSideBar }) {
         <HiMenuAlt1 size={26} />
       </button>
       <button
-        className={`fixed left-[235px] top-4 z-50 rounded-full border border-color_secondary_text bg-color_primary p-2 text-2xl text-color_white ${sideBar ? "" : "hidden"}`}
+        className={`border-color_secondary_text fixed left-[235px] top-4 z-50 rounded-full border bg-color_primary p-2 text-2xl text-color_white ${sideBar ? "" : "hidden"}`}
       >
         <HiChevronLeft />
       </button>

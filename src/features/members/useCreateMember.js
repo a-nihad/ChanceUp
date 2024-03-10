@@ -1,11 +1,11 @@
+import { toast } from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createEditMember } from "../../services/apiMembers";
-import { toast } from "react-hot-toast";
 
 export function useCreateMember() {
   const queryClient = useQueryClient();
 
-  const { mutate: createMember } = useMutation({
+  const { mutate: createMember, isPending } = useMutation({
     mutationFn: createEditMember,
     onSuccess: () => {
       toast.success("New Member successfully created");
@@ -19,5 +19,5 @@ export function useCreateMember() {
     },
   });
 
-  return { createMember };
+  return { createMember, isPending };
 }

@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { BsHourglassBottom } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom";
-import ButtonIcon from "../../ui/ButtonIcon";
+import { BsHourglassBottom } from "react-icons/bs";
 import { useSettings } from "../settings/useSettings";
+import ButtonIcon from "../../ui/ButtonIcon";
 
 function Pendings() {
   const [pending, setPending] = useState(false);
   const togglePending = () => setPending(!pending);
 
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const { settings: { currentInstalment } = {}, isLoading } = useSettings();
+  const { settings: { currentInstalment } = {} } = useSettings();
 
   function handleClick() {
     if (pending) searchParams.set("pending", "");

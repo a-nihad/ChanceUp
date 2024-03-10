@@ -20,7 +20,7 @@ export async function editSettings(updateSettings) {
 
   if (error) {
     console.error(error);
-    throw new Error("Settings could not be loaded");
+    throw new Error("Settings could not be edited");
   }
 
   return data;

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMembers } from "../../services/apiMembers";
 import { useSearchParams } from "react-router-dom";
+import { getMembers } from "../../services/apiMembers";
 
 export function useMembers() {
   const [searchParams] = useSearchParams();

@@ -5,7 +5,7 @@ import { createEditMember } from "../../services/apiMembers";
 export function useEditMember() {
   const queryClient = useQueryClient();
 
-  const { mutate: editMember } = useMutation({
+  const { mutate: editMember, isPending } = useMutation({
     mutationFn: ({ newMember, id }) => createEditMember(newMember, id),
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -18,5 +18,5 @@ export function useEditMember() {
     },
   });
 
-  return { editMember };
+  return { editMember, isPending };
 }

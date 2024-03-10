@@ -1,10 +1,12 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUpdateAdmin } from "./useUpdateAdmin";
 import FormInput from "../../ui/form/FormInput";
 import FormRow from "../../ui/form/FormRow";
 import Buttion from "../../ui/Buttion";
+import Form from "../../ui/form/Form";
 
 const validationSchema = yup
   .object({
@@ -17,10 +19,10 @@ const validationSchema = yup
   .required();
 
 function EditPassword({ type }) {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
     reset,
   } = useForm({
@@ -29,20 +31,17 @@ function EditPassword({ type }) {
 
   const { updateAdmin, isUpdating } = useUpdateAdmin();
 
-  const settings =
-    "grid max-w-[800px] gap-y-3 p-5 sm:grid-cols-2 sm:gap-x-8 lg:p-8 lg:pt-5";
-  const login =
-    "flex w-full max-w-[400px] flex-col gap-3 px-10 lg:max-w-[500px]";
-
-  function onSubmit(data) {
-    updateAdmin(data.password, { onSuccess: reset });
+  function onSubmit({ password }) {
+    updateAdmin(password, {
+      onSuccess: () => {
+        navigate("/login");
+        reset();
+      },
+    });
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={type === "login" ? login : settings}
-    >
+    <Form onSubmit={handleSubmit(onSubmit)} type={type}>
       <FormRow label="New Password" error={errors?.password?.message}>
         <FormInput
           id="password"
@@ -67,7 +66,7 @@ function EditPassword({ type }) {
       </FormRow>
 
       <Buttion className="h-max">Update Password</Buttion>
-    </form>
+    </Form>
   );
 }
 

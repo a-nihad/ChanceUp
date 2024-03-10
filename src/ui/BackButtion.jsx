@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
+import ButtionIcon from "../ui/ButtonIcon";
 
-function BackButtion({ className }) {
+function BackButtion() {
   const navigate = useNavigate();
   return (
-    <button
-      className={`flex items-center gap-2 rounded-xl border p-2 px-4 ${className} `}
+    <ButtionIcon
       onClick={() => navigate(-1)}
+      variation="special_Primary"
+      className={"flex items-center gap-3 rounded-lg border-color_text px-4 "}
     >
       <IoArrowBack /> Back
-    </button>
+    </ButtionIcon>
   );
 }
 

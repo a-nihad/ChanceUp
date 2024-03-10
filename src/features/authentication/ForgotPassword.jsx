@@ -1,19 +1,36 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useRecoverPassword } from "./useRecoverPassword";
+import FormInput from "../../ui/form/FormInput";
 import BackButtion from "../../ui/BackButtion";
+import MiniLoader from "../../ui/MiniLoader";
+import FormRow from "../../ui/form/FormRow";
 import Buttion from "../../ui/Buttion";
 import AuthHeader from "./AuthHeader";
-import Input from "../../ui/Input";
+import Form from "../../ui/form/Form";
+
+const validationSchema = yup
+  .object({
+    email: yup.string().email().required("Email is required"),
+  })
+  .required();
 
 function ForgotPassword() {
-  const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
-  const recoverPassword = useRecoverPassword();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const { recoverPassword, isPending } = useRecoverPassword();
+
+  function onSubmit({ email }) {
     recoverPassword(email);
     navigate("/login", { replace: true });
   }
@@ -24,19 +41,20 @@ function ForgotPassword() {
         heading="Recover your password"
         message="You'll recive an email to recover your password"
       />
-      <form
-        onSubmit={handleSubmit}
-        className="flex w-full max-w-[400px] flex-col gap-3 px-10 lg:max-w-[500px] "
-      >
-        <Input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Buttion className=""> Send </Buttion>
-      </form>
-      <BackButtion />
+      <Form onSubmit={handleSubmit(onSubmit)} type="auth">
+        <FormRow error={errors?.email?.message}>
+          <FormInput
+            id="email"
+            type="email"
+            register={register}
+            disabled={isPending}
+            placeholder="Enter your email"
+            className="sm:placeholder:text-color_text"
+          />
+        </FormRow>
+        <Buttion> {isPending ? <MiniLoader /> : "Send"} </Buttion>
+      </Form>
+      <BackButtion />,
     </>
   );
 }

@@ -1,8 +1,8 @@
 import { cloneElement, createContext, useContext, useState } from "react";
-import { useOutsideClick } from "../hooks/useOutsideClick";
-import { HiMiniXMark } from "react-icons/hi2";
-import ButtonIcon from "./ButtonIcon";
 import { createPortal } from "react-dom";
+import { HiMiniXMark } from "react-icons/hi2";
+import { useOutsideClick } from "../hooks/useOutsideClick";
+import ButtonIcon from "./ButtonIcon";
 
 // 1. Create context
 const ModalContext = createContext();
@@ -22,7 +22,6 @@ function Modal({ children }) {
 }
 
 // 3. Create child components
-
 function Open({ children, windowName }) {
   const { open } = useContext(ModalContext);
   return cloneElement(children, {
@@ -32,7 +31,6 @@ function Open({ children, windowName }) {
 
 function Window({ children, name, className, parentRef }) {
   const { openName, close } = useContext(ModalContext);
-
   const ref = useOutsideClick(close);
 
   if (openName !== name) return null;
@@ -43,8 +41,8 @@ function Window({ children, name, className, parentRef }) {
     >
       <div className="relative" ref={parentRef ? parentRef : ref}>
         <ButtonIcon
-          variation="special_Primary"
           onClick={close}
+          variation="special_Primary"
           className={`absolute right-2 top-2 z-30 ${className} `}
         >
           <HiMiniXMark size={22} />
@@ -57,7 +55,6 @@ function Window({ children, name, className, parentRef }) {
 }
 
 //4. Add child components as properties to parent component
-
 Modal.Open = Open;
 Modal.Window = Window;
 

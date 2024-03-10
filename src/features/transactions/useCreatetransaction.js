@@ -5,7 +5,7 @@ import { createTransactions } from "../../services/apiTransactions";
 export function useCreatetransaction() {
   const queryClient = useQueryClient();
 
-  const { mutate: createTransaction } = useMutation({
+  const { mutate: createTransaction, isPending } = useMutation({
     mutationFn: createTransactions,
     onSuccess: () => {
       toast.success("Transaction completed");
@@ -19,5 +19,5 @@ export function useCreatetransaction() {
     },
   });
 
-  return { createTransaction };
+  return { createTransaction, isPending };
 }

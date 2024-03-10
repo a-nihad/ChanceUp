@@ -1,10 +1,11 @@
+import { toast } from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteMember as deleteMemberApi } from "../../services/apiMembers";
-import { toast } from "react-hot-toast";
 
 export function useDeleteMember() {
   const queryClient = useQueryClient();
-  const { mutate: deleteMember } = useMutation({
+
+  const { mutate: deleteMember, isPending } = useMutation({
     mutationFn: deleteMemberApi,
     onSuccess: () => {
       toast.success("Member successfully deleted");
@@ -16,5 +17,5 @@ export function useDeleteMember() {
       toast.error(err.message);
     },
   });
-  return { deleteMember };
+  return { deleteMember, isPending };
 }

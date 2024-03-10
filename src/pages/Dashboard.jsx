@@ -1,10 +1,10 @@
-import { useSettings } from "../features/settings/useSettings";
 import { useMembers } from "../features/members/useMembers";
-import Loader from "../ui/Loader";
-import Status from "../features/dashboard/Status";
-import StatusChart from "../features/dashboard/StatusChart";
+import { useSettings } from "../features/settings/useSettings";
+import TransactionTable from "../features/transactions/TransactionTable";
 import WinnwerMessage from "../features/dashboard/WinnwerMessage";
-import RecentTransactionTable from "../features/transactions/RecentTransactionTable";
+import StatusChart from "../features/dashboard/StatusChart";
+import Status from "../features/dashboard/Status";
+import Loader from "../ui/Loader";
 
 function Dashboard() {
   const { settings, isLoading: settingsLoading } = useSettings();
@@ -54,7 +54,7 @@ function Dashboard() {
           <StatusChart data={installments} heading="Installments" />
         </div>
       </div>
-      <RecentTransactionTable />
+      <TransactionTable recent={true} />
     </div>
   );
 }

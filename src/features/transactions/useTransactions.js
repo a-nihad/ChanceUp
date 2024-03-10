@@ -1,6 +1,6 @@
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getTransactions } from "../../services/apiTransactions";
-import { useSearchParams } from "react-router-dom";
 
 export function useTransactions() {
   const [searchParams] = useSearchParams();
@@ -12,7 +12,8 @@ export function useTransactions() {
       ? null
       : { field: "payment_type", value: filterValue };
 
-  const { data, isLoading, error } = useQuery({
+  // Query
+  const { data, isLoading } = useQuery({
     queryKey: ["transaction", filter],
     queryFn: () => getTransactions({ filter }),
   });
@@ -23,5 +24,5 @@ export function useTransactions() {
     ? data || {}
     : data.filter((value) => value.members.name.toLowerCase().includes(search));
 
-  return { transactions, isLoading, error };
+  return { transactions, isLoading };
 }

@@ -5,13 +5,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSignup } from "../authentication/useSignup";
 import { useCreateMember } from "./useCreateMember";
 import { useEditMember } from "./useEditMember";
+import TableHeader from "../../ui/table/TableHeader";
 import FormInput from "../../ui/form/FormInput";
+import StyledModal from "../../ui/StyledModal";
 import FormRow from "../../ui/form/FormRow";
 import Buttion from "../../ui/Buttion";
+import Form from "../../ui/form/Form";
 
 const validationSchema = yup
   .object({
-    name: yup.string().required("Full Name is required"),
+    name: yup.string().lowercase().required("Full Name is required"),
     phone: yup.string().required("Phone number is required").min(10),
     email: yup
       .string()
@@ -41,8 +44,8 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
         },
   });
 
-  const { createMember } = useCreateMember();
-  const { editMember } = useEditMember();
+  const { createMember, isPending } = useCreateMember();
+  const { editMember, isPending: isEditing } = useEditMember();
   const signup = useSignup();
 
   function onSubmit(data) {
@@ -78,22 +81,19 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
 
   return (
     <div className={`w-screen sm:w-fit`}>
-      <div
-        className={`no-scrollbar z-50 mx-5 overflow-y-scroll rounded-xl border shadow-lg dark:border-color_dark_text sm:m-0`}
-      >
-        <header className="sticky top-0 bg-color_primary p-3 text-lg font-semibold text-color_light dark:bg-dark_primary_dark dark:text-color_grey sm:px-5">
+      <StyledModal form={true}>
+        <TableHeader form={true}>
           {isEditSession ? "Edit" : "Create"} Member
-        </header>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="bg-color_white p-5 dark:bg-dark_grey_light sm:px-8 sm:py-5"
-        >
+        </TableHeader>
+
+        <Form onSubmit={handleSubmit(onSubmit)} type="form">
           <div className=" gap-x-3 space-y-3 sm:grid">
             <FormRow label="Full Name" error={errors?.name?.message}>
               <FormInput
                 id="name"
                 register={register}
                 placeholder="Full Name"
+                disabled={isPending || isEditing}
               />
             </FormRow>
 
@@ -102,15 +102,26 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
                 id="phone"
                 register={register}
                 placeholder="Phone Number"
+                disabled={isPending || isEditing}
               />
             </FormRow>
 
             <FormRow label="Email" error={errors?.email?.message}>
-              <FormInput id="email" register={register} placeholder="Email" />
+              <FormInput
+                id="email"
+                register={register}
+                placeholder="Email"
+                disabled={isPending || isEditing}
+              />
             </FormRow>
 
             <FormRow label="Place" error={errors?.place?.message}>
-              <FormInput id="place" register={register} placeholder="Place" />
+              <FormInput
+                id="place"
+                register={register}
+                placeholder="Place"
+                disabled={isPending || isEditing}
+              />
             </FormRow>
 
             <FormRow label="Address" error={errors?.address?.message}>
@@ -118,32 +129,46 @@ function CreateMemberForm({ memberToEdit = {}, onClose }) {
                 id="address"
                 register={register}
                 placeholder="Address"
+                disabled={isPending || isEditing}
               />
             </FormRow>
 
             <FormRow label="Lots" error={errors?.lot?.message}>
-              <FormInput id="lot" register={register} placeholder="Lots" />
+              <FormInput
+                id="lot"
+                register={register}
+                placeholder="Lots"
+                disabled={isPending || isEditing}
+              />
             </FormRow>
 
             <input
               type="file"
               id="image"
               accept="image/*"
+              {...register("image")}
               className=" col-span-2 w-[220px] py-2 text-color_text file:cursor-pointer file:rounded-lg file:border-none file:bg-color_grey file:px-3 file:py-2 sm:w-max "
               placeholder="Chose Profile pic"
-              {...register("image")}
+              disabled={isPending || isEditing}
             />
 
             <div className="col-span-2 flex justify-end space-x-4 px-2 py-4">
-              <Buttion onClick={onClose} variation="secondary" type="reset">
+              <Buttion
+                onClick={onClose}
+                variation="secondary"
+                type="reset"
+                disabled={isPending || isEditing}
+              >
                 Cancel
               </Buttion>
-              <Buttion>{isEditSession ? "Update " : "Create "}</Buttion>
+              <Buttion disabled={isPending || isEditing}>
+                {isEditSession ? "Update " : "Create "}
+              </Buttion>
             </div>
           </div>
-        </form>
+        </Form>
         <DevTool control={control} />
-      </div>
+      </StyledModal>
     </div>
   );
 }

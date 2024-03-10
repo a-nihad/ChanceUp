@@ -6,7 +6,9 @@ import { useSettings } from "./useSettings";
 import FormInput from "../../ui/form/FormInput";
 import FormRow from "../../ui/form/FormRow";
 import Buttion from "../../ui/Buttion";
+import Form from "../../ui/form/Form";
 import Loader from "../../ui/Loader";
+import MiniLoader from "../../ui/MiniLoader";
 
 const validationSchema = yup
   .object({
@@ -22,8 +24,7 @@ function EditSettingsForm() {
     isLoading,
   } = useSettings();
 
-  const { editSettings } = useEditSettings();
-
+  const { editSettings, isPending } = useEditSettings();
   const { handleSubmit, register } = useForm({
     resolver: yupResolver(validationSchema),
   });
@@ -35,14 +36,12 @@ function EditSettingsForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="grid max-w-[800px] gap-y-3 p-5 sm:grid-cols-2 sm:gap-x-8 lg:p-8 lg:pt-5 "
-    >
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow label="Total Installment" type="secondary">
         <FormInput
           id="totalInstallment"
           register={register}
+          disabled={isPending}
           defaultValue={totalInstallment}
         />
       </FormRow>
@@ -51,6 +50,7 @@ function EditSettingsForm() {
         <FormInput
           id="perLotPrice"
           register={register}
+          disabled={isPending}
           defaultValue={perLotPrice}
         />
       </FormRow>
@@ -59,14 +59,17 @@ function EditSettingsForm() {
         <FormInput
           id="currentInstalment"
           register={register}
+          disabled={isPending}
           defaultValue={currentInstalment}
         />
       </FormRow>
 
       <div className="flex items-end">
-        <Buttion className="h-max w-full">Update Setting</Buttion>
+        <Buttion className="h-max w-full">
+          {isPending ? <MiniLoader /> : "Update Setting"}
+        </Buttion>
       </div>
-    </form>
+    </Form>
   );
 }
 
