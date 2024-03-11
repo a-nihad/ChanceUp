@@ -29,10 +29,6 @@ function AdminLoginForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues: {
-      email: "sulaimanalungal410@gmail.com",
-      password: "000000",
-    },
   });
 
   const { login, isPending } = useLogin();

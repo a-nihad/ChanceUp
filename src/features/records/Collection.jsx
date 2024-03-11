@@ -19,7 +19,7 @@ function Collection({ onClose, id, setClose }) {
         <InstalmentCollection
           id={memberId}
           onClose={onClose}
-          setClose={setClose}
+          setClose={() => setClose?.()}
         />
       )}
     </StyledModal>
