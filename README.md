@@ -35,6 +35,16 @@ Built with React, Kuri Wallet provides a seamless user experience with cutting-e
 
 **Server:** Supabase
 
+##  The final version of the projects
+
+[Kuri-Wallet](https://kuri-wallet.vercel.app/)
+
+## Demo (Login)
+
+Email address :- nihad.tech111@gmail.com
+
+Password :- 000000
+
 ## Library documentation:
 
 [Tailwindcss with vite](https://tailwindcss.com/docs/guides/vite?ref=jonas.io)
