@@ -1,10 +1,10 @@
-# Kuri Wallet
+# ChanceUp
 
-Welcome to Kuri Wallet!
+Welcome to ChanceUp!
 
-Kuri Wallet is a revolutionary raffle system that lets you win prizes immediately and pay them back in smaller, manageable installments. Imagine winning a dream vacation but spreading out the cost over time, just like an installment plan.
+ChanceUp is a revolutionary raffle system that lets you win prizes immediately and pay them back in smaller, manageable installments. Imagine winning a dream vacation but spreading out the cost over time, just like an installment plan.
 
-Built with React, Kuri Wallet provides a seamless user experience with cutting-edge features:
+Built with React, ChanceUp provides a seamless user experience with cutting-edge features:
 
 ## Features
 
@@ -35,9 +35,9 @@ Built with React, Kuri Wallet provides a seamless user experience with cutting-e
 
 **Server:** Supabase
 
-##  The final version of the projects
+## The final version of the projects
 
-[Kuri-Wallet](https://kuri-wallet.vercel.app/)
+[ChaceUp](https://chanceup.vercel.app/)
 
 ## Demo (Login)
 

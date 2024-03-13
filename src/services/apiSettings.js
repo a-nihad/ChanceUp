@@ -1,7 +1,7 @@
 import supabase from "./supabase";
 
 export async function getSettings() {
-  const { data, error } = await supabase.from("settings").select("*").single();
+  const { data, error } = await supabase.from("settings_demo").select("*").single();
 
   if (error) {
     console.error(error);
@@ -13,7 +13,7 @@ export async function getSettings() {
 
 export async function editSettings(updateSettings) {
   const { data, error } = await supabase
-    .from("settings")
+    .from("settings_demo")
     .update(updateSettings)
     .eq("id", 1)
     .select();

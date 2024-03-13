@@ -2,7 +2,7 @@ import supabase from "./supabase";
 
 export async function getTransactions({ filter }) {
   let query = supabase
-    .from("transactions")
+    .from("transactions_demo")
     .select("*,members(name,image,lot)")
     .order("created_at", { ascending: false });
 
@@ -20,7 +20,7 @@ export async function getTransactions({ filter }) {
 
 export async function createTransactions(transaction) {
   const { data, error } = await supabase
-    .from("transactions")
+    .from("transactions_demo")
     .insert([transaction])
     .select();
 

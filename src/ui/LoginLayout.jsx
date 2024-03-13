@@ -4,7 +4,7 @@ function LoginLayout() {
   return (
     <div className="h-screen w-screen md:grid md:grid-cols-2 ">
       <div className=" hidden flex-col items-center justify-center gap-5 bg-color_primary md:flex lg:flex">
-        <h1 className="text-3xl text-white"> Welcome! </h1>
+        <h1 className="text-3xl text-white"> Welcome to ChanceUp </h1>
         <img
           src="/password.svg"
           alt="login_png"
